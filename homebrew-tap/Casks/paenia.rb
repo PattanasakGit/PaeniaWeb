@@ -21,7 +21,8 @@ cask "paenia" do
   app "Paenia.app"
 
   caveats <<~EOS
-    This build is not signed or notarized. If Gatekeeper blocks launch after install, run:
-      xattr -dr com.apple.quarantine "$HOME/Applications/Paenia.app"
+    This cask installs to /Applications by default. The unsigned .dmg can leave quarantine on the app (macOS may say it is “damaged”). After every install or upgrade, run:
+      xattr -dr com.apple.quarantine "/Applications/Paenia.app"
+    If you use --appdir, use that path instead. Then open Paenia once; if prompted, use System Settings → Privacy & Security → Open Anyway.
   EOS
 end

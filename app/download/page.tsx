@@ -100,8 +100,9 @@ export default function DownloadPage() {
                   <a href="https://brew.sh" rel="noopener noreferrer">
                     Homebrew
                   </a>
-                  . Apple does not allow a 100% guaranteed one-click experience for unsigned apps from the web;
-                  this path avoids the usual browser quarantine problem.
+                  . Unsigned apps are never as smooth as notarized ones — the xattr line is required after each
+                  <code className="download-inline-code"> brew install</code> or{" "}
+                  <code className="download-inline-code">reinstall</code>.
                 </p>
                 <pre className="download-terminal download-terminal--brew" tabIndex={0}>
                   <code>{brewTapCommands}</code>
