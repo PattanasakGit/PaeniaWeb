@@ -14,14 +14,14 @@ const CONFIG = {
   /** Must match CFBundleShortVersionString in the Paenia app Info.plist */
   version: "0.0.95",
   /** GitHub owner/repo where you attach the .dmg release asset */
-  githubRepo: "pattanasak/Paenia",
+  githubRepo: "PattanasakGit/Paenia",
   /** Git tag on the release — must match the tag on GitHub */
   releaseTag: "v0.0.95",
   /** Must match output of scripts/make_dmg.sh */
   dmgFileName: "Paenia-0.0.95-macos.dmg",
   /** From local build; update when you ship a new DMG */
   fileSize: "~4.2 MB",
-  sha256: "cd8c3bac5da7218aa18efe06a5259b99decdf4bd8d266d56f7593927b981311d" as string | null
+  sha256: "a4439c6fd24cf81dd97cd26c52a3e6b20347cfc60f80260d58ed48f24d083ed3" as string | null
 };
 
 function envDmgUrl(): string | undefined {
