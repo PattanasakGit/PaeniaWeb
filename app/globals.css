@@ -1532,3 +1532,125 @@
   line-height: 1.55;
   color: var(--muted);
 }
+
+/* —— /download minimal (install + uninstall one-liners) —— */
+.download-page-minimal {
+  flex: 1 0 auto;
+  padding: clamp(2.5rem, 10vw, 5rem) 0 clamp(3.5rem, 12vw, 6rem);
+}
+
+.download-page-minimal__wrap {
+  width: min(40rem, calc(100% - var(--gutter) * 2));
+  margin-inline: auto;
+}
+
+.download-page-minimal__title {
+  margin: 0 0 0.2rem;
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 2.75rem);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.08;
+  color: var(--ink);
+}
+
+.download-page-minimal__sub {
+  margin: 0 0 2.25rem;
+  font-size: 0.875rem;
+  color: var(--muted);
+}
+
+.download-page-minimal__row {
+  margin-bottom: 1.85rem;
+}
+
+.download-page-minimal__label {
+  margin: 0 0 0.45rem;
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted-2);
+}
+
+.download-page-minimal__cmd {
+  margin: 0 0 0.6rem;
+  padding: 1rem 1.05rem;
+  border-radius: 12px;
+  background: color-mix(in oklch, var(--paper-2) 45%, var(--surface));
+  border: 1px solid color-mix(in oklch, var(--line) 88%, var(--paper));
+  font-family: ui-monospace, "SF Mono", Menlo, monospace;
+  font-size: clamp(0.6875rem, 2.8vw, 0.8125rem);
+  font-weight: 500;
+  line-height: 1.45;
+  word-break: break-all;
+  overflow-x: auto;
+  color: var(--ink);
+}
+
+.download-page-minimal__cmd code {
+  font: inherit;
+}
+
+.download-page-minimal__btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.4rem 1.05rem;
+  border-radius: 999px;
+  border: 1px solid color-mix(in oklch, var(--line) 90%, var(--paper));
+  background: var(--surface);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--ink);
+  cursor: pointer;
+  transition: border-color 0.2s var(--ease), color 0.2s var(--ease);
+}
+
+.download-page-minimal__btn:hover {
+  border-color: color-mix(in oklch, var(--accent) 35%, var(--line));
+  color: var(--accent);
+}
+
+.download-page-minimal__more {
+  margin-top: 2rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid color-mix(in oklch, var(--line) 85%, transparent);
+}
+
+.download-page-minimal__more summary {
+  cursor: pointer;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--muted);
+  list-style: none;
+}
+
+.download-page-minimal__more summary::-webkit-details-marker {
+  display: none;
+}
+
+.download-page-minimal__more-p {
+  margin: 0.65rem 0 0;
+  font-size: 0.8125rem;
+}
+
+.download-page-minimal__more a {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.download-page-minimal__home {
+  display: inline-block;
+  margin-top: 2.25rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--muted);
+  text-decoration: none;
+  border-bottom: 1px solid color-mix(in oklch, var(--muted) 25%, transparent);
+  padding-bottom: 0.1em;
+}
+
+.download-page-minimal__home:hover {
+  color: var(--accent);
+  border-bottom-color: color-mix(in oklch, var(--accent) 40%, var(--line));
+}

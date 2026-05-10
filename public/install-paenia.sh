@@ -3,7 +3,8 @@
 # Docs: https://paenia-web.vercel.app/download/
 # One-liner (Vercel):
 #   curl -fsSL https://paenia-web.vercel.app/install-paenia.sh | bash
-# Mirrors: GitHub raw + https://paenia.app/install-paenia.sh (when DNS is ready)
+# Uninstall:
+#   curl -fsSL https://paenia-web.vercel.app/uninstall-paenia.sh | bash
 
 set -euo pipefail
 

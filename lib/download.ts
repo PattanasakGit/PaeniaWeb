@@ -124,6 +124,14 @@ export const installScriptSourceUrl =
 
 export const brewCurlInstallOneLiner = `curl -fsSL ${installScriptUrl} | bash`;
 
+/** Served next to install-paenia.sh on the same host */
+export const uninstallScriptUrlVercel = "https://paenia-web.vercel.app/uninstall-paenia.sh";
+
+export const brewCurlUninstallOneLiner = `curl -fsSL ${uninstallScriptUrlVercel} | bash`;
+
+/** Advanced / disk image builds */
+export const paeniaGithubReleasesUrl = `https://github.com/${CONFIG.githubRepo}/releases`;
+
 export const brewCurlInstallNote =
   "Piping to bash trusts this script — read it first if you prefer (link below). Requires Homebrew. Script is served from the Vercel deployment.";
 
