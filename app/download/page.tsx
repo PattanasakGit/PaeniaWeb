@@ -1,12 +1,18 @@
 import Link from "next/link";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
-import { downloadInfo, systemRequirements } from "@/lib/download";
+import {
+  downloadInfo,
+  githubReleasesPageUrl,
+  paeniaDownloadReleaseTag,
+  systemRequirements,
+  unsignedDmgNotice
+} from "@/lib/download";
 
 export const metadata = {
   title: "Download Paenia for macOS",
   description:
-    "Download page for Paenia, a native macOS theme editor for Cursor and VS Code-family editors. The DMG release is coming soon."
+    "Download Paenia as a macOS disk image (.dmg). Native theme editor for Cursor and VS Code-family editors."
 };
 
 const highlights = [
@@ -17,32 +23,50 @@ const highlights = [
 ] as const;
 
 export default function DownloadPage() {
+  const releasesUrl = githubReleasesPageUrl();
+
   return (
     <>
       <Header />
       <main id="main-content" className="download-main" tabIndex={-1}>
         <div className="download-body wrap">
           <header className="download-header">
-            <p className="download-eyebrow">macOS</p>
+            <p className="download-eyebrow">macOS · Disk image</p>
             <h1>Download Paenia</h1>
             <p className="download-lede">
-              The DMG release is coming soon. This page stays the download destination — the file link will
-              appear here when the build is ready.
+              {downloadInfo.status === "available"
+                ? `Paenia ${downloadInfo.version} — open the disk image, drag the app to Applications, then launch. If the download returns 404, publish a GitHub Release with tag ${paeniaDownloadReleaseTag} and attach the matching .dmg.`
+                : "The download link is enabled once you publish the .dmg on GitHub Releases (or set NEXT_PUBLIC_PAENIA_DMG_URL). See lib/download.ts."}
             </p>
             <div className="download-actions">
               {downloadInfo.status === "available" ? (
-                <a className="button primary" href={downloadInfo.dmgUrl}>
-                  Download Paenia {downloadInfo.version}
+                <a
+                  className="button primary"
+                  href={downloadInfo.dmgUrl}
+                  rel="noopener noreferrer"
+                >
+                  Download .dmg ({downloadInfo.version})
                 </a>
               ) : (
                 <button className="button button-waiting" type="button" disabled>
-                  DMG coming soon
+                  DMG link not configured
                 </button>
               )}
+              {releasesUrl ? (
+                <a className="download-back" href={releasesUrl} rel="noopener noreferrer">
+                  All releases
+                </a>
+              ) : null}
               <Link className="download-back" href="/">
                 Back to overview
               </Link>
             </div>
+            {downloadInfo.status === "available" && downloadInfo.sha256 ? (
+              <p className="download-sha" aria-label="SHA-256 checksum">
+                <span className="download-sha__label">SHA-256</span>
+                <code className="download-sha__value">{downloadInfo.sha256}</code>
+              </p>
+            ) : null}
           </header>
 
           <hr className="download-rule" />
@@ -56,6 +80,15 @@ export default function DownloadPage() {
                 <li key={item}>{item}</li>
               ))}
             </ul>
+          </section>
+
+          <hr className="download-rule" />
+
+          <section className="download-block" aria-labelledby="dl-first-run">
+            <h2 id="dl-first-run" className="download-h2">
+              First launch (unsigned build)
+            </h2>
+            <p className="download-note">{unsignedDmgNotice}</p>
           </section>
 
           <hr className="download-rule" />
@@ -75,11 +108,12 @@ export default function DownloadPage() {
 
           <section className="download-block" aria-labelledby="dl-meta">
             <h2 id="dl-meta" className="download-h2">
-              Release metadata
+              For maintainers
             </h2>
             <p className="download-note">
-              When the DMG is uploaded, update <code>lib/download.ts</code> with the version, file size,
-              optional SHA-256 checksum, and download URL.
+              Run <code>./scripts/make_dmg.sh</code> in the Paenia repo, attach the .dmg to a GitHub Release,
+              then set <code>githubRepo</code> / <code>releaseTag</code> in <code>lib/download.ts</code> or
+              define <code>NEXT_PUBLIC_PAENIA_DMG_URL</code> (see <code>.env.example</code>).
             </p>
           </section>
         </div>

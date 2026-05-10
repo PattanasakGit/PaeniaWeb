@@ -304,6 +304,7 @@ export const faqs = [
   },
   {
     question: "Where can I download Paenia?",
-    answer: "Use the download page; the DMG link will appear there when the release is ready."
+    answer:
+      "Use the /download page for the macOS .dmg. The button is enabled when the release URL is configured (GitHub Releases or NEXT_PUBLIC_PAENIA_DMG_URL)."
   }
 ] as const;

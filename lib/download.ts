@@ -1,3 +1,47 @@
+/**
+ * Single source for the macOS .dmg download.
+ *
+ * Options (first match wins):
+ * 1. `NEXT_PUBLIC_PAENIA_DMG_URL` — full URL to the .dmg (e.g. GitHub release asset).
+ * 2. Build from `githubRepo` + `releaseTag` + `dmgFileName` when `githubRepo` is set
+ *    (not empty and does not start with `YOUR_`).
+ *
+ * After `./scripts/make_dmg.sh`, upload `build/Paenia-<version>-macos.dmg` to a GitHub Release
+ * and fill in the config or env var.
+ */
+
+const CONFIG = {
+  /** Must match CFBundleShortVersionString in the Paenia app Info.plist */
+  version: "0.0.95",
+  /** GitHub owner/repo where you attach the .dmg release asset */
+  githubRepo: "pattanasak/Paenia",
+  /** Git tag on the release — must match the tag on GitHub */
+  releaseTag: "v0.0.95",
+  /** Must match output of scripts/make_dmg.sh */
+  dmgFileName: "Paenia-0.0.95-macos.dmg",
+  /** From local build; update when you ship a new DMG */
+  fileSize: "~4.2 MB",
+  sha256: "cd8c3bac5da7218aa18efe06a5259b99decdf4bd8d266d56f7593927b981311d" as string | null
+};
+
+function envDmgUrl(): string | undefined {
+  const u = process.env.NEXT_PUBLIC_PAENIA_DMG_URL?.trim();
+  return u || undefined;
+}
+
+function githubReleaseDmgUrl(): string | null {
+  const repo = CONFIG.githubRepo.trim();
+  if (!repo || repo.startsWith("YOUR_")) return null;
+  return `https://github.com/${repo}/releases/download/${CONFIG.releaseTag}/${CONFIG.dmgFileName}`;
+}
+
+function resolvedDmgUrl(): string | null {
+  return envDmgUrl() ?? githubReleaseDmgUrl();
+}
+
+/** Git tag expected on GitHub (for copy on the download page). */
+export const paeniaDownloadReleaseTag = CONFIG.releaseTag;
+
 export type DownloadInfo =
   | {
       status: "coming-soon";
@@ -14,13 +58,36 @@ export type DownloadInfo =
       sha256: string | null;
     };
 
-export const downloadInfo: DownloadInfo = {
-  status: "coming-soon",
-  version: null,
-  dmgUrl: null,
-  fileSize: null,
-  sha256: null
-};
+export const downloadInfo: DownloadInfo = (() => {
+  const url = resolvedDmgUrl();
+  if (!url) {
+    return {
+      status: "coming-soon",
+      version: null,
+      dmgUrl: null,
+      fileSize: null,
+      sha256: null
+    };
+  }
+  return {
+    status: "available",
+    version: CONFIG.version,
+    dmgUrl: url,
+    fileSize: CONFIG.fileSize.trim() || "—",
+    sha256: CONFIG.sha256
+  };
+})();
+
+/** Optional: link to GitHub releases list (set repo first) */
+export function githubReleasesPageUrl(): string | null {
+  const repo = CONFIG.githubRepo.trim();
+  if (!repo || repo.startsWith("YOUR_")) return null;
+  return `https://github.com/${repo}/releases`;
+}
+
+export const unsignedDmgNotice =
+  "This build is not Apple-notarized. After opening the disk image, drag Paenia into Applications. " +
+  "On first launch, right-click the app → Open, or allow it under System Settings → Privacy & Security.";
 
 export const systemRequirements = [
   "macOS 13 or newer",
