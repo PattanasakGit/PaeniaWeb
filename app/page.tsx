@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { HeroShowcase } from "@/components/HeroShowcase";
-import { ScreenshotStory } from "@/components/ScreenshotStory";
+import { ProductGallery } from "@/components/ProductGallery";
 import { SectionShell } from "@/components/SectionShell";
 import { WorkflowShowcases } from "@/components/WorkflowShowcases";
 import { faqs, features, proofPoints, safetyItems, supportedEditors } from "@/lib/product";
@@ -39,7 +39,7 @@ export default function HomePage() {
           <HeroShowcase />
         </section>
 
-        <ScreenshotStory />
+        <ProductGallery />
 
         <WorkflowShowcases />
 

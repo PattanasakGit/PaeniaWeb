@@ -1,6 +1,11 @@
 import Image from "next/image";
 import { workflowShowcases } from "@/lib/product";
 
+const imageDimensions = (src: string) =>
+  src.includes("overrides") || src.includes("original-backups")
+    ? { width: 3080, height: 2034 }
+    : { width: 3168, height: 2122 };
+
 export function WorkflowShowcases() {
   return (
     <section className="workflow-section" aria-labelledby="workflow-title">
@@ -23,7 +28,14 @@ export function WorkflowShowcases() {
             <div className="workflow-media" data-count={showcase.images.length}>
               {showcase.images.map((image) => (
                 <figure key={image.src} className="workflow-image">
-                  <Image src={image.src} alt={image.alt} fill sizes="(max-width: 900px) 88vw, 720px" />
+                  <Image
+                    src={image.src}
+                    alt={image.alt}
+                    width={imageDimensions(image.src).width}
+                    height={imageDimensions(image.src).height}
+                    loading="eager"
+                    sizes="(max-width: 900px) 92vw, 720px"
+                  />
                   <figcaption>{image.label}</figcaption>
                 </figure>
               ))}

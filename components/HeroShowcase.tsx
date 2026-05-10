@@ -1,49 +1,41 @@
-"use client";
-
 import Image from "next/image";
-import { useMemo, useState } from "react";
 import { screenshots } from "@/lib/product";
 
-type ScreenshotId = (typeof screenshots)[number]["id"];
+const heroDimensions = {
+  dark: { width: 2838, height: 2012 },
+  light: { width: 2838, height: 2012 },
+  palette: { width: 2926, height: 2100 }
+} as const;
 
 export function HeroShowcase() {
-  const [active, setActive] = useState<ScreenshotId>("dark");
-  const activeScreenshot = useMemo(
-    () => screenshots.find((screenshot) => screenshot.id === active) ?? screenshots[0],
-    [active]
-  );
+  const [primary, ...supporting] = screenshots;
+  const primaryDimensions = heroDimensions[primary.id];
 
   return (
-    <div className="hero-showcase" data-active={active} aria-label="Interactive Paenia screenshots">
-      {screenshots.map((screenshot) => (
-        <button
-          key={screenshot.id}
-          className="hero-shot"
-          data-shot={screenshot.id}
-          type="button"
-          onClick={() => setActive(screenshot.id)}
-          aria-pressed={active === screenshot.id}
-        >
-          <Image src={screenshot.src} alt={screenshot.alt} fill sizes="(max-width: 900px) 88vw, 620px" priority={screenshot.id === "dark"} />
-          <span>{screenshot.label}</span>
-        </button>
-      ))}
-      <div className="hero-showcase-meta" aria-live="polite">
-        <h2>{activeScreenshot.title}</h2>
-        <p>{activeScreenshot.body}</p>
-      </div>
-      <div className="hero-showcase-picker" aria-label="Choose hero screenshot">
-        {screenshots.map((screenshot) => (
-          <button
-            key={screenshot.id}
-            type="button"
-            data-active={active === screenshot.id}
-            onClick={() => setActive(screenshot.id)}
-            aria-label={`Show hero ${screenshot.label}`}
-          >
-            <span />
-            {screenshot.label}
-          </button>
+    <div className="hero-showcase" aria-label="Paenia product screenshots">
+      <figure className="hero-shot hero-shot-main">
+        <Image
+          src={primary.src}
+          alt={primary.alt}
+          width={primaryDimensions.width}
+          height={primaryDimensions.height}
+          sizes="(max-width: 900px) 92vw, 720px"
+          priority
+        />
+        <figcaption>{primary.label}</figcaption>
+      </figure>
+      <div className="hero-shot-row" aria-label="Additional Paenia screenshots">
+        {supporting.map((screenshot) => (
+          <figure key={screenshot.id} className="hero-shot">
+            <Image
+              src={screenshot.src}
+              alt={screenshot.alt}
+              width={heroDimensions[screenshot.id].width}
+              height={heroDimensions[screenshot.id].height}
+              sizes="(max-width: 900px) 44vw, 340px"
+            />
+            <figcaption>{screenshot.label}</figcaption>
+          </figure>
         ))}
       </div>
     </div>

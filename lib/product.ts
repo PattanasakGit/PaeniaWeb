@@ -128,6 +128,81 @@ export const workflowShowcases = [
   }
 ] as const;
 
+export const galleryImages = [
+  {
+    src: "/images/paenia/screenshot-dark.png",
+    alt: "Paenia dark workspace with palette editing and live editor preview",
+    label: "Dark workspace",
+    width: 2838,
+    height: 2012,
+    tone: "The core workspace"
+  },
+  {
+    src: "/images/paenia/screenshot-light.png",
+    alt: "Paenia light preset workspace",
+    label: "Light preset",
+    width: 2838,
+    height: 2012,
+    tone: "Light and readable"
+  },
+  {
+    src: "/images/paenia/screenshot-palette.png",
+    alt: "Paenia palette editing screen with syntax color controls",
+    label: "Palette editing",
+    width: 2926,
+    height: 2100,
+    tone: "Color system controls"
+  },
+  {
+    src: "/images/paenia/screenshot-presets.png",
+    alt: "Paenia preset picker with theme list and palette swatches",
+    label: "Preset picker",
+    width: 3168,
+    height: 2122,
+    tone: "Start fast"
+  },
+  {
+    src: "/images/paenia/screenshot-detailed.png",
+    alt: "Paenia detailed mode showing exact VS Code color keys",
+    label: "Detailed mode",
+    width: 3168,
+    height: 2122,
+    tone: "Exact keys"
+  },
+  {
+    src: "/images/paenia/screenshot-overrides.png",
+    alt: "Paenia custom override badges in detailed mode",
+    label: "Overrides",
+    width: 3080,
+    height: 2034,
+    tone: "Precise adjustments"
+  },
+  {
+    src: "/images/paenia/screenshot-targets.png",
+    alt: "Paenia apply targets settings for supported editors",
+    label: "Apply targets",
+    width: 3168,
+    height: 2122,
+    tone: "Choose editors"
+  },
+  {
+    src: "/images/paenia/screenshot-original-backups.png",
+    alt: "Paenia original backup snapshot settings",
+    label: "Original backups",
+    width: 3080,
+    height: 2034,
+    tone: "Original snapshots"
+  },
+  {
+    src: "/images/paenia/screenshot-regular-backups.png",
+    alt: "Paenia regular backup list and restore controls",
+    label: "Regular backups",
+    width: 3168,
+    height: 2122,
+    tone: "Restore safely"
+  }
+] as const;
+
 export const safetyItems = [
   "Confirmation modal before Apply",
   "Backup before successful writes",
