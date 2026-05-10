@@ -21,8 +21,8 @@ cask "paenia" do
   app "Paenia.app"
 
   caveats <<~EOS
-    This cask installs to /Applications by default. The unsigned .dmg can leave quarantine on the app (macOS may say it is “damaged”). After every install or upgrade, run:
-      xattr -dr com.apple.quarantine "/Applications/Paenia.app"
-    If you use --appdir, use that path instead. Then open Paenia once; if prompted, use System Settings → Privacy & Security → Open Anyway.
+    The unsigned .dmg can leave quarantine on the app (macOS may say it is “damaged”). After install or upgrade, strip quarantine using the path Homebrew reports:
+      APP="$(brew list --cask paenia | grep -E 'Paenia[.]app$' | head -1)"; [ -n "$APP" ] && xattr -dr com.apple.quarantine "$APP"
+    If APP is empty, run brew list --cask paenia to see paths, or: brew reinstall --cask paenia
   EOS
 end

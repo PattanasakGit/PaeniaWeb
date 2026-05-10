@@ -105,15 +105,22 @@ export const gatekeeperHintTh =
  */
 export const brewTapRepo = "PattanasakGit/homebrew-tap";
 
-/** Default cask installs to /Applications — run after every install or `brew reinstall`. */
-export const brewQuarantineStripCommand = 'xattr -dr com.apple.quarantine "/Applications/Paenia.app"';
+/**
+ * Resolves Paenia.app wherever Homebrew put it (default /Applications, or ~/Applications, or custom --appdir).
+ */
+export const brewQuarantineStripCommand = String.raw`APP="$(brew list --cask paenia 2>/dev/null | grep -E 'Paenia[.]app$' | head -1)"
+if [ -n "$APP" ] && [ -d "$APP" ]; then xattr -dr com.apple.quarantine "$APP"; else
+  for p in "/Applications/Paenia.app" "$HOME/Applications/Paenia.app"; do
+    [ -d "$p" ] && xattr -dr com.apple.quarantine "$p" && break
+  done
+fi`;
 
 export const brewTapCommands = `brew tap ${brewTapRepo}
 brew install --cask paenia
 ${brewQuarantineStripCommand}`;
 
 export const brewInstallExplanation =
-  "Homebrew still unpacks the same unsigned .dmg, and macOS can leave quarantine on Paenia.app — that produces the misleading “damaged” dialog. Always run the xattr line after install or upgrade (third line below). If you use a custom app dir, change the path to match.";
+  "Homebrew still unpacks the same unsigned .dmg, and macOS can leave quarantine on Paenia.app — that produces the misleading “damaged” dialog. After install, run the block below: it finds Paenia.app via brew list, then falls back to /Applications and ~/Applications. If nothing is found, run brew reinstall --cask paenia.";
 
 export const brewInstallExplanationTh =
   "ติดตั้งด้วย brew แล้วต้องรันบรรทัด xattr ทุกครั้ง (หลังติดตั้งหรืออัปเกรด) เพื่อลบ quarantine — ไม่ใช่แค่โหลดจากเบราว์เซอร์เท่านั้นที่โดน";
