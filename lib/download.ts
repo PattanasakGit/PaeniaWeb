@@ -99,6 +99,24 @@ export const gatekeeperAfterXattr =
 export const gatekeeperHintTh =
   "ถ้าโหลดผ่านเบราว์เซอร์แล้วขึ้นว่าแอป “เสียหาย” มักเป็นเพราะ quarantine ไม่ใช่ไฟล์พัง — ลบแอตทริบิวต์ตามคำสั่งด้านล่างหลังลากแอปไปที่ Applications";
 
+/**
+ * Third-party tap: GitHub repo must exist at github.com/{brewTapRepo} with Casks/paenia.rb
+ * (copy from this repo’s homebrew-tap/Casks/paenia.rb — keep version + sha256 in sync with CONFIG).
+ */
+export const brewTapRepo = "PattanasakGit/homebrew-tap";
+
+export const brewTapCommands = `brew tap ${brewTapRepo}
+brew install --cask paenia`;
+
+export const brewInstallExplanation =
+  "Homebrew downloads the same .dmg using curl, which usually avoids browser quarantine — the “damaged” dialog from Chrome/Safari is far less common. The app is still unsigned; some Macs may still ask once before first launch.";
+
+export const brewInstallExplanationTh =
+  "แนะนำให้ติดตั้งผ่าน Homebrew ถ้าทำได้ — โหลดแบบ curl มักไม่โดน quarantine แบบเบราว์เซอร์ แต่แอปยังไม่ sign อยู่ดี บางเครื่องอาจถามก่อนเปิดครั้งแรก";
+
+export const brewTapSetupHint =
+  "If install fails with “Unknown tap”, create the GitHub repo, add Casks/paenia.rb from the PaeniaWeb repository (folder homebrew-tap/), update version and sha256 when you ship a new DMG, then try again.";
+
 /** Copy for the download page — keep minimal. */
 export const downloadMachineChecklist = [
   "macOS 13 (Ventura) or later · Apple Silicon or Intel",

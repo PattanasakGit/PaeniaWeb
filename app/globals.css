@@ -1334,6 +1334,29 @@
   border-color: color-mix(in oklch, var(--accent) 22%, var(--line));
 }
 
+.download-panel--brew {
+  margin-top: 1rem;
+  background: color-mix(in oklch, var(--surface) 92%, var(--paper-2));
+  border-color: color-mix(in oklch, var(--line) 75%, var(--paper));
+}
+
+.download-panel__brew-note {
+  margin: 0 0 0.85rem;
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+.download-panel__brew-note a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 0.12em;
+}
+
+.download-terminal--brew {
+  margin-top: 0.25rem;
+}
+
 .download-panel__lede {
   margin: 0 0 0.75rem;
   font-size: 0.875rem;

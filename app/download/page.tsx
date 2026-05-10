@@ -3,6 +3,10 @@ import Link from "next/link";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import {
+  brewInstallExplanation,
+  brewInstallExplanationTh,
+  brewTapCommands,
+  brewTapSetupHint,
   downloadInfo,
   downloadMachineChecklist,
   gatekeeperAfterXattr,
@@ -83,9 +87,33 @@ export default function DownloadPage() {
             </section>
 
             {downloadInfo.status === "available" ? (
+              <section className="download-panel download-panel--brew" aria-labelledby="brew-title">
+                <h2 id="brew-title" className="download-panel__title">
+                  Recommended: Homebrew (smoothest without notarization)
+                </h2>
+                <p className="download-panel__lede">{brewInstallExplanation}</p>
+                <p className="download-panel__lede download-panel__lede--th" lang="th">
+                  {brewInstallExplanationTh}
+                </p>
+                <p className="download-panel__brew-note">
+                  Requires{" "}
+                  <a href="https://brew.sh" rel="noopener noreferrer">
+                    Homebrew
+                  </a>
+                  . Apple does not allow a 100% guaranteed one-click experience for unsigned apps from the web;
+                  this path avoids the usual browser quarantine problem.
+                </p>
+                <pre className="download-terminal download-terminal--brew" tabIndex={0}>
+                  <code>{brewTapCommands}</code>
+                </pre>
+                <p className="download-panel__footnote">{brewTapSetupHint}</p>
+              </section>
+            ) : null}
+
+            {downloadInfo.status === "available" ? (
               <section className="download-panel download-panel--accent" aria-labelledby="gatekeeper-title">
                 <h2 id="gatekeeper-title" className="download-panel__title">
-                  First open after a browser download
+                  Browser .dmg download (Chrome / Safari)
                 </h2>
                 <p className="download-panel__lede">{gatekeeperQuarantineHint}</p>
                 <p className="download-panel__lede download-panel__lede--th" lang="th">
@@ -102,8 +130,8 @@ export default function DownloadPage() {
                   <li>{gatekeeperAfterXattr}</li>
                 </ol>
                 <p className="download-panel__footnote">
-                  <strong>No quarantine prompts at all</strong> requires an Apple-notarized build (code signing +
-                  notarization). This beta is unsigned; the steps above are the standard workaround.
+                  For fewer Gatekeeper surprises, prefer <strong>Homebrew</strong> above. The steps here are the
+                  standard fix when the .dmg was downloaded in a browser.
                 </p>
               </section>
             ) : null}
