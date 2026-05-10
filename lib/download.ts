@@ -105,15 +105,18 @@ export const gatekeeperHintTh =
  */
 export const brewTapRepo = "PattanasakGit/homebrew-tap";
 
-/**
- * Default one-liner host: GitHub raw (works without custom DNS).
- * Same bytes as public/install-paenia.sh — update branch in URL if you rename default branch.
- */
-export const installScriptUrl =
+/** Production static file on Vercel — change if project name / domain changes */
+export const installScriptUrlVercel = "https://paenia-web.vercel.app/install-paenia.sh";
+
+/** Mirror: no dependency on deploy; branch must match default branch */
+export const installScriptUrlGitHubRaw =
   "https://raw.githubusercontent.com/PattanasakGit/PaeniaWeb/master/public/install-paenia.sh";
 
-/** When paenia.app DNS is configured on your hosting */
+/** When paenia.app DNS is configured */
 export const installScriptUrlSite = "https://paenia.app/install-paenia.sh";
+
+/** One-liner uses Vercel-hosted script */
+export const installScriptUrl = installScriptUrlVercel;
 
 /** Inspect before piping to bash */
 export const installScriptSourceUrl =
@@ -122,10 +125,10 @@ export const installScriptSourceUrl =
 export const brewCurlInstallOneLiner = `curl -fsSL ${installScriptUrl} | bash`;
 
 export const brewCurlInstallNote =
-  "Piping to bash trusts this script — read it first if you prefer (link below). Requires Homebrew. Uses GitHub so it works even when paenia.app DNS is not set up yet.";
+  "Piping to bash trusts this script — read it first if you prefer (link below). Requires Homebrew. Script is served from the Vercel deployment.";
 
 export const brewCurlInstallNoteTh =
-  "คำสั่งชี้ไป GitHub โดยตรงเพื่อให้โหลดได้แม้โดเมน paenia.app ยังไม่ตั้งค่า — ต้องมี Homebrew";
+  "สคริปต์โหลดจาก Vercel — ถ้าโปรเจกต์เปลี่ยนโดเมนให้อัปเดต URL ในเว็บ — ต้องมี Homebrew";
 
 /**
  * Resolves Paenia.app wherever Homebrew put it (default /Applications, or ~/Applications, or custom --appdir).

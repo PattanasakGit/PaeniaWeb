@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 # Paenia — Homebrew cask install + strip Gatekeeper quarantine (unsigned builds).
-# Docs: https://paenia.app/download/ (when DNS is ready)
-# One-liner (works without paenia.app DNS):
-#   curl -fsSL https://raw.githubusercontent.com/PattanasakGit/PaeniaWeb/master/public/install-paenia.sh | bash
-# Mirror: https://paenia.app/install-paenia.sh
+# Docs: https://paenia-web.vercel.app/download/
+# One-liner (Vercel):
+#   curl -fsSL https://paenia-web.vercel.app/install-paenia.sh | bash
+# Mirrors: GitHub raw + https://paenia.app/install-paenia.sh (when DNS is ready)
 
 set -euo pipefail
 

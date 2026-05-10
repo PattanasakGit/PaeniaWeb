@@ -19,8 +19,9 @@ import {
   gatekeeperQuarantineHint,
   gatekeeperTerminalCommand,
   installScriptSourceUrl,
-  installScriptUrl,
+  installScriptUrlGitHubRaw,
   installScriptUrlSite,
+  installScriptUrlVercel,
   paeniaAppVersion
 } from "@/lib/download";
 
@@ -119,12 +120,16 @@ export default function DownloadPage() {
                   <code>{brewCurlInstallOneLiner}</code>
                 </pre>
                 <p className="download-panel__script-links">
-                  <a href={installScriptUrl} rel="noopener noreferrer">
-                    Script (GitHub raw)
+                  <a href={installScriptUrlVercel} rel="noopener noreferrer">
+                    Script (Vercel)
+                  </a>
+                  <span aria-hidden="true"> · </span>
+                  <a href={installScriptUrlGitHubRaw} rel="noopener noreferrer">
+                    Mirror (GitHub raw)
                   </a>
                   <span aria-hidden="true"> · </span>
                   <a href={installScriptUrlSite} rel="noopener noreferrer">
-                    Same file on paenia.app
+                    paenia.app
                   </a>
                   <span aria-hidden="true"> · </span>
                   <a href={installScriptSourceUrl} rel="noopener noreferrer">
