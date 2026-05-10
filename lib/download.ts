@@ -24,6 +24,9 @@ const CONFIG = {
   sha256: "a4439c6fd24cf81dd97cd26c52a3e6b20347cfc60f80260d58ed48f24d083ed3" as string | null
 };
 
+/** Marketing / UI — same as the shipped app version in CONFIG. */
+export const paeniaAppVersion = CONFIG.version;
+
 function envDmgUrl(): string | undefined {
   const u = process.env.NEXT_PUBLIC_PAENIA_DMG_URL?.trim();
   return u || undefined;
@@ -78,21 +81,14 @@ export const downloadInfo: DownloadInfo = (() => {
   };
 })();
 
-/** Optional: link to GitHub releases list (set repo first) */
-export function githubReleasesPageUrl(): string | null {
-  const repo = CONFIG.githubRepo.trim();
-  if (!repo || repo.startsWith("YOUR_")) return null;
-  return `https://github.com/${repo}/releases`;
-}
-
 export const unsignedDmgNotice =
   "This build is not Apple-notarized. After opening the disk image, drag Paenia into Applications. " +
   "On first launch, right-click the app → Open, or allow it under System Settings → Privacy & Security.";
 
-export const systemRequirements = [
-  "macOS 13 or newer",
-  "Native SwiftUI app",
-  "No Node.js runtime required by the app",
-  "Installs to ~/Applications/Paenia.app",
-  "Uses ~/Library/Application Support/Paenia/theme.json"
+/** Copy for the download page — keep minimal. */
+export const downloadMachineChecklist = [
+  "macOS 13 (Ventura) or later · Apple Silicon or Intel",
+  "Use with a supported editor (e.g. Cursor or VS Code) — Paenia only changes that editor’s settings files"
 ] as const;
+
+export const systemRequirements = downloadMachineChecklist;

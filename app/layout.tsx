@@ -56,7 +56,7 @@ export default function RootLayout({
         <a className="skip-link" href="#main-content">
           Skip to content
         </a>
-        {children}
+        <div className="site-root">{children}</div>
         <SiteEffects />
         <script
           type="application/ld+json"

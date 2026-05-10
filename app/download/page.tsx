@@ -1,121 +1,101 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import {
   downloadInfo,
-  githubReleasesPageUrl,
-  paeniaDownloadReleaseTag,
-  systemRequirements,
-  unsignedDmgNotice
+  downloadMachineChecklist,
+  paeniaAppVersion
 } from "@/lib/download";
 
-export const metadata = {
-  title: "Download Paenia for macOS",
-  description:
-    "Download Paenia as a macOS disk image (.dmg). Native theme editor for Cursor and VS Code-family editors."
-};
+const displayVersion =
+  downloadInfo.status === "available" ? downloadInfo.version : paeniaAppVersion;
 
-const highlights = [
-  "Native SwiftUI macOS app",
-  "Theme preset and palette editor",
-  "Live IDE preview",
-  "Safe apply flow with backups"
-] as const;
+export async function generateMetadata(): Promise<Metadata> {
+  return {
+    title: `Download Paenia ${displayVersion} for macOS (beta)`,
+    description: `Download Paenia ${displayVersion} beta for macOS (.dmg). Native theme editor for Cursor and VS Code-family editors.`
+  };
+}
 
 export default function DownloadPage() {
-  const releasesUrl = githubReleasesPageUrl();
-
   return (
     <>
       <Header />
       <main id="main-content" className="download-main" tabIndex={-1}>
         <div className="download-body wrap">
-          <header className="download-header">
-            <p className="download-eyebrow">macOS · Disk image</p>
-            <h1>Download Paenia</h1>
-            <p className="download-lede">
-              {downloadInfo.status === "available"
-                ? `Paenia ${downloadInfo.version} — open the disk image, drag the app to Applications, then launch. If the download returns 404, publish a GitHub Release with tag ${paeniaDownloadReleaseTag} and attach the matching .dmg.`
-                : "The download link is enabled once you publish the .dmg on GitHub Releases (or set NEXT_PUBLIC_PAENIA_DMG_URL). See lib/download.ts."}
-            </p>
-            <div className="download-actions">
+          <article className="download-card">
+            <header className="download-card__header">
+              <p className="download-kicker">macOS 13 or later</p>
+              <div className="download-card__title-row">
+                <h1 className="download-card__title">Download Paenia</h1>
+                <span className="download-beta" title="Early release — feedback welcome">
+                  Beta
+                </span>
+              </div>
+              <p className="download-card__version" aria-label={`Software version ${displayVersion}`}>
+                v{displayVersion}
+                <span className="download-card__version-sep" aria-hidden>
+                  {" "}
+                  ·{" "}
+                </span>
+                <span className="download-card__version-muted">macOS disk image</span>
+              </p>
+              <p className="download-card__lede">
+                {downloadInfo.status === "available"
+                  ? "Open the disk image, then drag Paenia into Applications."
+                  : "The installer link is not configured yet."}
+              </p>
+            </header>
+
+            <div className="download-card__cta">
               {downloadInfo.status === "available" ? (
                 <a
-                  className="button primary"
+                  className="button primary download-card__button"
                   href={downloadInfo.dmgUrl}
                   rel="noopener noreferrer"
                 >
-                  Download .dmg ({downloadInfo.version})
+                  Download v{displayVersion} (.dmg)
                 </a>
               ) : (
-                <button className="button button-waiting" type="button" disabled>
-                  DMG link not configured
+                <button className="button button-waiting download-card__button-wait" type="button" disabled>
+                  Coming soon
                 </button>
               )}
-              {releasesUrl ? (
-                <a className="download-back" href={releasesUrl} rel="noopener noreferrer">
-                  All releases
-                </a>
-              ) : null}
-              <Link className="download-back" href="/">
-                Back to overview
+              <Link className="download-card__home" href="/">
+                Back to home
               </Link>
             </div>
-            {downloadInfo.status === "available" && downloadInfo.sha256 ? (
-              <p className="download-sha" aria-label="SHA-256 checksum">
-                <span className="download-sha__label">SHA-256</span>
-                <code className="download-sha__value">{downloadInfo.sha256}</code>
-              </p>
+
+            <section className="download-panel" aria-labelledby="download-reqs-title">
+              <h2 id="download-reqs-title" className="download-panel__title">
+                Before you download
+              </h2>
+              <ul className="download-panel__list">
+                {downloadMachineChecklist.map((line) => (
+                  <li key={line}>{line}</li>
+                ))}
+              </ul>
+            </section>
+
+            {downloadInfo.status === "available" ? (
+              <details className="download-disclosure">
+                <summary>Checksum and first launch</summary>
+                <div className="download-disclosure__body">
+                  {downloadInfo.sha256 ? (
+                    <div className="download-disclosure__block">
+                      <span className="download-disclosure__label">SHA-256 (v{displayVersion})</span>
+                      <code className="download-disclosure__hash">{downloadInfo.sha256}</code>
+                    </div>
+                  ) : null}
+                  <p className="download-disclosure__note">
+                    This build is not Apple-notarized. The first time you open it, right-click Paenia in
+                    Applications and choose Open, or allow it under System Settings → Privacy & Security.
+                  </p>
+                </div>
+              </details>
             ) : null}
-          </header>
-
-          <hr className="download-rule" />
-
-          <section className="download-block" aria-labelledby="dl-includes">
-            <h2 id="dl-includes" className="download-h2">
-              Included
-            </h2>
-            <ul className="download-list">
-              {highlights.map((item) => (
-                <li key={item}>{item}</li>
-              ))}
-            </ul>
-          </section>
-
-          <hr className="download-rule" />
-
-          <section className="download-block" aria-labelledby="dl-first-run">
-            <h2 id="dl-first-run" className="download-h2">
-              First launch (unsigned build)
-            </h2>
-            <p className="download-note">{unsignedDmgNotice}</p>
-          </section>
-
-          <hr className="download-rule" />
-
-          <section className="download-block" aria-labelledby="dl-req">
-            <h2 id="dl-req" className="download-h2">
-              Requirements
-            </h2>
-            <ul className="download-list">
-              {systemRequirements.map((requirement) => (
-                <li key={requirement}>{requirement}</li>
-              ))}
-            </ul>
-          </section>
-
-          <hr className="download-rule" />
-
-          <section className="download-block" aria-labelledby="dl-meta">
-            <h2 id="dl-meta" className="download-h2">
-              For maintainers
-            </h2>
-            <p className="download-note">
-              Run <code>./scripts/make_dmg.sh</code> in the Paenia repo, attach the .dmg to a GitHub Release,
-              then set <code>githubRepo</code> / <code>releaseTag</code> in <code>lib/download.ts</code> or
-              define <code>NEXT_PUBLIC_PAENIA_DMG_URL</code> (see <code>.env.example</code>).
-            </p>
-          </section>
+          </article>
         </div>
       </main>
       <Footer />
