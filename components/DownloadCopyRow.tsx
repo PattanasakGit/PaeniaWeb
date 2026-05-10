@@ -5,9 +5,10 @@ import { useCallback, useState } from "react";
 type DownloadCopyRowProps = {
   label: string;
   command: string;
+  variant?: "install" | "uninstall";
 };
 
-export function DownloadCopyRow({ label, command }: DownloadCopyRowProps) {
+export function DownloadCopyRow({ label, command, variant = "install" }: DownloadCopyRowProps) {
   const [copied, setCopied] = useState(false);
 
   const onCopy = useCallback(async () => {
@@ -21,14 +22,16 @@ export function DownloadCopyRow({ label, command }: DownloadCopyRowProps) {
   }, [command]);
 
   return (
-    <div className="download-page-minimal__row">
-      <p className="download-page-minimal__label">{label}</p>
-      <pre className="download-page-minimal__cmd">
+    <div className={`download-luxe__row download-luxe__row--${variant}`}>
+      <div className="download-luxe__row-top">
+        <span className="download-luxe__row-label">{label}</span>
+        <button type="button" className="download-luxe__copy" onClick={onCopy}>
+          {copied ? "Copied" : "Copy"}
+        </button>
+      </div>
+      <pre className="download-luxe__snippet">
         <code>{command}</code>
       </pre>
-      <button type="button" className="download-page-minimal__btn" onClick={onCopy}>
-        {copied ? "Copied" : "Copy"}
-      </button>
     </div>
   );
 }

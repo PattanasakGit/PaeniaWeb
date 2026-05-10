@@ -1533,124 +1533,259 @@
   color: var(--muted);
 }
 
-/* —— /download minimal (install + uninstall one-liners) —— */
-.download-page-minimal {
+/* —— /download — luxe system-style panel —— */
+.download-luxe {
+  position: relative;
   flex: 1 0 auto;
-  padding: clamp(2.5rem, 10vw, 5rem) 0 clamp(3.5rem, 12vw, 6rem);
+  padding: clamp(2.25rem, 8vh, 3.75rem) 0 clamp(3rem, 11vh, 5.5rem);
+  overflow: hidden;
 }
 
-.download-page-minimal__wrap {
-  width: min(40rem, calc(100% - var(--gutter) * 2));
+.download-luxe__ambient {
+  pointer-events: none;
+  position: absolute;
+  inset: -18% -40% auto;
+  height: min(62vh, 480px);
+  background:
+    radial-gradient(ellipse 72% 55% at 50% -5%, color-mix(in oklch, var(--accent) 16%, transparent), transparent 72%),
+    radial-gradient(ellipse 42% 38% at 88% 18%, oklch(94% 0.035 82 / 0.55), transparent 68%);
+  opacity: 0.92;
+}
+
+.download-luxe__shell {
+  position: relative;
+  z-index: 1;
+  width: min(34.5rem, calc(100% - var(--gutter) * 2));
   margin-inline: auto;
 }
 
-.download-page-minimal__title {
-  margin: 0 0 0.2rem;
+.download-luxe__card {
+  border-radius: 22px;
+  padding: clamp(1.65rem, 4.2vw, 2.35rem) clamp(1.35rem, 4vw, 2rem);
+  background: color-mix(in oklch, var(--surface) 76%, transparent);
+  backdrop-filter: blur(22px) saturate(1.2);
+  -webkit-backdrop-filter: blur(22px) saturate(1.2);
+  border: 1px solid color-mix(in oklch, var(--surface) 35%, var(--line));
+  box-shadow:
+    0 1px 0 oklch(100% 0 0 / 0.52) inset,
+    0 28px 72px oklch(22% 0.02 285 / 0.07),
+    0 6px 20px oklch(22% 0.02 285 / 0.035);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .download-luxe__card {
+    animation: download-luxe-in 0.55s var(--ease-out) both;
+  }
+}
+
+@keyframes download-luxe-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.992);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.download-luxe__masthead {
+  text-align: center;
+  margin-bottom: clamp(1.5rem, 3.5vw, 2rem);
+}
+
+.download-luxe__title {
+  margin: 0;
   font-family: var(--font-display);
-  font-size: clamp(2rem, 5vw, 2.75rem);
+  font-size: clamp(2.125rem, 5.2vw, 2.875rem);
   font-weight: 600;
-  letter-spacing: -0.03em;
-  line-height: 1.08;
+  letter-spacing: -0.034em;
+  line-height: 1.04;
   color: var(--ink);
 }
 
-.download-page-minimal__sub {
-  margin: 0 0 2.25rem;
-  font-size: 0.875rem;
-  color: var(--muted);
-}
-
-.download-page-minimal__row {
-  margin-bottom: 1.85rem;
-}
-
-.download-page-minimal__label {
-  margin: 0 0 0.45rem;
-  font-size: 0.625rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
+.download-luxe__kicker {
+  margin: 0.55rem 0 0;
+  font-size: 0.6875rem;
+  font-weight: 650;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--muted-2);
 }
 
-.download-page-minimal__cmd {
-  margin: 0 0 0.6rem;
-  padding: 1rem 1.05rem;
+.download-luxe__blocks {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.download-luxe__hairline {
+  height: 1px;
+  margin: clamp(1.25rem, 3vw, 1.6rem) 0;
+  border: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    color-mix(in oklch, var(--line) 88%, transparent) 18%,
+    color-mix(in oklch, var(--line) 88%, transparent) 82%,
+    transparent 100%
+  );
+}
+
+.download-luxe__row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.download-luxe__row-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.download-luxe__row-label {
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.download-luxe__row--uninstall .download-luxe__row-label {
+  color: var(--muted-2);
+}
+
+.download-luxe__copy {
+  flex-shrink: 0;
+  padding: 0.32rem 0.9rem;
+  border-radius: 7px;
+  border: 1px solid color-mix(in oklch, var(--line) 82%, var(--ink));
+  background: linear-gradient(
+    180deg,
+    color-mix(in oklch, var(--surface) 100%, var(--paper)) 0%,
+    color-mix(in oklch, var(--paper-2) 35%, var(--surface)) 100%
+  );
+  box-shadow:
+    0 1px 0 oklch(100% 0 0 / 0.55) inset,
+    0 1px 2px oklch(22% 0.02 285 / 0.06);
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.015em;
+  color: var(--ink);
+  cursor: pointer;
+  transition:
+    border-color 0.2s var(--ease),
+    color 0.2s var(--ease),
+    box-shadow 0.2s var(--ease);
+}
+
+.download-luxe__copy:hover {
+  border-color: color-mix(in oklch, var(--accent) 32%, var(--line));
+  color: var(--accent);
+  box-shadow:
+    0 1px 0 oklch(100% 0 0 / 0.55) inset,
+    0 2px 6px oklch(22% 0.02 285 / 0.06);
+}
+
+.download-luxe__row--install .download-luxe__copy:focus-visible {
+  outline-color: var(--accent);
+}
+
+.download-luxe__snippet {
+  margin: 0;
+  padding: 0.95rem 1rem;
   border-radius: 12px;
-  background: color-mix(in oklch, var(--paper-2) 45%, var(--surface));
-  border: 1px solid color-mix(in oklch, var(--line) 88%, var(--paper));
+  background: color-mix(in oklch, var(--paper-2) 55%, var(--surface));
+  border: 1px solid color-mix(in oklch, var(--line) 90%, var(--paper));
+  box-shadow:
+    0 1px 0 oklch(100% 0 0 / 0.4) inset,
+    0 2px 10px oklch(22% 0.02 285 / 0.035) inset;
   font-family: ui-monospace, "SF Mono", Menlo, monospace;
-  font-size: clamp(0.6875rem, 2.8vw, 0.8125rem);
+  font-size: clamp(0.6875rem, 2.6vw, 0.78125rem);
   font-weight: 500;
-  line-height: 1.45;
+  line-height: 1.5;
   word-break: break-all;
   overflow-x: auto;
   color: var(--ink);
 }
 
-.download-page-minimal__cmd code {
+.download-luxe__snippet code {
   font: inherit;
 }
 
-.download-page-minimal__btn {
-  display: inline-flex;
-  align-items: center;
-  padding: 0.4rem 1.05rem;
-  border-radius: 999px;
-  border: 1px solid color-mix(in oklch, var(--line) 90%, var(--paper));
-  background: var(--surface);
-  font-size: 0.8125rem;
-  font-weight: 600;
-  color: var(--ink);
+.download-luxe__row--install .download-luxe__snippet {
+  border-color: color-mix(in oklch, var(--accent) 18%, var(--line));
+  box-shadow:
+    0 1px 0 oklch(100% 0 0 / 0.4) inset,
+    0 0 0 1px color-mix(in oklch, var(--accent) 8%, transparent) inset,
+    0 2px 10px oklch(22% 0.02 285 / 0.035) inset;
+}
+
+.download-luxe__card-foot {
+  margin-top: clamp(1.35rem, 3vw, 1.75rem);
+  padding-top: clamp(1rem, 2.5vw, 1.25rem);
+  border-top: 1px solid color-mix(in oklch, var(--line) 72%, transparent);
+}
+
+.download-luxe__details {
+  margin: 0;
+}
+
+.download-luxe__details-sum {
   cursor: pointer;
-  transition: border-color 0.2s var(--ease), color 0.2s var(--ease);
-}
-
-.download-page-minimal__btn:hover {
-  border-color: color-mix(in oklch, var(--accent) 35%, var(--line));
-  color: var(--accent);
-}
-
-.download-page-minimal__more {
-  margin-top: 2rem;
-  padding-top: 1.25rem;
-  border-top: 1px solid color-mix(in oklch, var(--line) 85%, transparent);
-}
-
-.download-page-minimal__more summary {
-  cursor: pointer;
-  font-size: 0.8125rem;
-  font-weight: 600;
-  color: var(--muted);
   list-style: none;
+  font-size: 0.6875rem;
+  font-weight: 650;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted-2);
+  transition: color 0.2s var(--ease);
 }
 
-.download-page-minimal__more summary::-webkit-details-marker {
+.download-luxe__details-sum:hover {
+  color: var(--muted);
+}
+
+.download-luxe__details-sum::-webkit-details-marker {
   display: none;
 }
 
-.download-page-minimal__more-p {
-  margin: 0.65rem 0 0;
+.download-luxe__details-body {
+  margin: 0.55rem 0 0;
   font-size: 0.8125rem;
 }
 
-.download-page-minimal__more a {
+.download-luxe__details-body a {
   color: var(--accent);
   font-weight: 600;
+  text-decoration: underline;
+  text-decoration-color: color-mix(in oklch, var(--accent) 35%, transparent);
+  text-underline-offset: 0.18em;
 }
 
-.download-page-minimal__home {
-  display: inline-block;
-  margin-top: 2.25rem;
+.download-luxe__details-body a:hover {
+  text-decoration-color: color-mix(in oklch, var(--accent) 65%, transparent);
+}
+
+.download-luxe__back {
+  display: inline-flex;
+  align-items: center;
+  margin-top: 1.15rem;
   font-size: 0.8125rem;
   font-weight: 600;
   color: var(--muted);
   text-decoration: none;
-  border-bottom: 1px solid color-mix(in oklch, var(--muted) 25%, transparent);
-  padding-bottom: 0.1em;
+  border-bottom: 1px solid color-mix(in oklch, var(--muted) 22%, transparent);
+  padding-bottom: 0.08em;
+  transition:
+    color 0.2s var(--ease),
+    border-color 0.2s var(--ease);
 }
 
-.download-page-minimal__home:hover {
+.download-luxe__back:hover {
   color: var(--accent);
-  border-bottom-color: color-mix(in oklch, var(--accent) 40%, var(--line));
+  border-bottom-color: color-mix(in oklch, var(--accent) 38%, var(--line));
 }
