@@ -8,8 +8,8 @@ type ScreenshotId = (typeof screenshots)[number]["id"];
 
 export function ScreenshotStory() {
   const [active, setActive] = useState<ScreenshotId>("dark");
-  const activeScreenshot = useMemo(
-    () => screenshots.find((screenshot) => screenshot.id === active) ?? screenshots[0],
+  const activeStep = useMemo(
+    () => storySteps.find((step) => step.screenshotId === active) ?? storySteps[0],
     [active]
   );
 
@@ -60,12 +60,12 @@ export function ScreenshotStory() {
               aria-pressed={active === screenshot.id}
             >
               <Image src={screenshot.src} alt={screenshot.alt} fill sizes="(max-width: 900px) 88vw, 640px" />
-              <span>{screenshot.label}</span>
+              <span>{screenshot.capTitle}</span>
             </button>
           ))}
           <div className="story-meta" aria-live="polite">
-            <h3>{activeScreenshot.title}</h3>
-            <p>{activeScreenshot.body}</p>
+            <h3>{activeStep.title}</h3>
+            <p>{activeStep.body}</p>
           </div>
           <div className="story-picker" aria-label="Choose screenshot">
             {screenshots.map((screenshot) => (
@@ -75,10 +75,10 @@ export function ScreenshotStory() {
                 className="story-picker-button"
                 data-active={active === screenshot.id}
                 onClick={() => setActive(screenshot.id)}
-                aria-label={`Show ${screenshot.label}`}
+                aria-label={`Show ${screenshot.capTitle}`}
               >
                 <span />
-                {screenshot.label}
+                {screenshot.capTitle}
               </button>
             ))}
           </div>

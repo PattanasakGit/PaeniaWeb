@@ -3,40 +3,40 @@ export const screenshots = [
     id: "dark",
     src: "/images/paenia/screenshot-dark.png",
     alt: "Paenia dark mode workspace with presets, palette editing, and live preview",
-    label: "Dark workspace",
-    title: "Start from a preset.",
-    body: "Choose from curated dark and light presets, then refine the palette without leaving the app."
+    kicker: "Overview",
+    capTitle: "Dark workspace",
+    capDesc: "Presets, palette, and live preview together — the main surface you work in."
   },
   {
     id: "light",
     src: "/images/paenia/screenshot-light.png",
-    alt: "Paenia light mode workspace showing the app chrome following a light preset",
-    label: "Light preset",
-    title: "Preview the whole chrome.",
-    body: "Paenia follows the loaded preset, so light themes and dark themes both feel native on macOS."
+    alt: "Paenia light mode workspace",
+    kicker: "Theme",
+    capTitle: "Light workspace",
+    capDesc: "Chrome and syntax tuned for comfortable reading in daylight."
   },
   {
     id: "palette",
     src: "/images/paenia/screenshot-palette.png",
-    alt: "Paenia palette editing screen with syntax colors and live editor preview",
-    label: "Palette editing",
-    title: "Tune palette keys live.",
-    body: "Palette edits cascade across workbench colors, while Detailed mode can override exact VS Code keys."
+    alt: "Paenia palette editing with live preview",
+    kicker: "Editing",
+    capTitle: "Palette mode",
+    capDesc: "Shape base colors and tokens while the IDE preview updates beside you."
   }
 ] as const;
 
 export const proofPoints = [
   {
     title: "78 presets",
-    body: "Grouped Dark, Light, and minimal palettes give users a fast starting point."
+    body: "Curated dark, light, and minimal starting points."
   },
   {
-    title: "Live IDE preview",
-    body: "Preview workbench colors and syntax tokens before writing editor settings."
+    title: "Live preview",
+    body: "Workbench and syntax before anything is written to disk."
   },
   {
-    title: "Backup-safe writes",
-    body: "Confirm, back up, patch, and validate each settings.json update."
+    title: "Safe apply",
+    body: "Confirm, snapshot, patch, and validate every write."
   }
 ] as const;
 
@@ -61,68 +61,83 @@ export const storySteps = [
 export const features = [
   {
     title: "Palette and Detailed editing",
-    body: "Edit base colors such as bg0, accent, blue, green, red, and purple, or override individual VS Code workbench keys."
+    body: "Edit base colors (bg0, accent, blue, green, red, purple) or override individual workbench keys."
   },
   {
     title: "Presets and personal themes",
-    body: "Start from curated presets, save your own palette snapshots, and reload them whenever you want."
+    body: "Start from curated presets, save your own snapshots, and reload them anytime."
   },
   {
     title: "Target-aware apply",
-    body: "Cursor can receive full theme and Glass tint settings. Other editors receive color customizations so their selected theme stays intact."
+    body: "Cursor can receive full theme and Glass tint settings. Other editors receive color customizations so their theme stays intact."
   },
   {
     title: "Custom editor paths",
-    body: "Add compatible VS Code-family settings.json locations with path validation before Paenia writes anything."
+    body: "Add compatible settings.json locations with validation before Paenia writes anything."
   }
 ] as const;
 
 export const workflowShowcases = [
   {
-    title: "Start with presets, then refine exact keys.",
-    body: "The preset picker, Palette mode, and Detailed mode work together: users can choose a theme direction, tune base colors, then override exact workbench keys only when they need precision.",
+    label: "Workflow",
+    title: "Presets first, precision when you need it.",
+    body: "Palette mode and Detailed mode stack cleanly: tune the base system, then override individual workbench keys only where it matters.",
     images: [
       {
         src: "/images/paenia/screenshot-presets.png",
-        alt: "Paenia preset picker with search and preset filters",
-        label: "Preset picker"
+        alt: "Preset picker",
+        kicker: "Workflow",
+        capTitle: "Preset library",
+        capDesc: "Search, filter, and open a direction without leaving the main window."
       },
       {
         src: "/images/paenia/screenshot-detailed.png",
-        alt: "Paenia Detailed mode showing individual VS Code workbench color keys",
-        label: "Detailed mode"
+        alt: "Detailed mode",
+        kicker: "Workflow",
+        capTitle: "Workbench keys",
+        capDesc: "Fine-tune exact color keys when you need surgical control over the UI."
       },
       {
         src: "/images/paenia/screenshot-overrides.png",
-        alt: "Paenia Detailed mode with custom override badges",
-        label: "Custom overrides"
+        alt: "Overrides",
+        kicker: "Workflow",
+        capTitle: "Your overrides",
+        capDesc: "Badges mark customized keys so the diff between preset and reality stays obvious."
       }
     ]
   },
   {
-    title: "Choose exactly where the theme applies.",
-    body: "Apply Targets makes the site story concrete: Cursor, VS Code, Antigravity, Trae and custom settings paths are visible, with status and paths shown before writing anything.",
+    label: "Targets",
+    title: "Choose where the theme lands.",
+    body: "Cursor, VS Code, Antigravity, Trae, and custom paths stay visible with status before any write — the marketing surface matches the confirmation UI.",
     images: [
       {
         src: "/images/paenia/screenshot-targets.png",
-        alt: "Paenia Apply Targets settings showing editor paths and target status",
-        label: "Apply targets"
+        alt: "Apply targets",
+        kicker: "Apply",
+        capTitle: "Where the theme lands",
+        capDesc: "Each editor shows its settings path and state — you confirm targets before Paenia writes."
       }
     ]
   },
   {
-    title: "Backups are part of the design, not an afterthought.",
-    body: "Original snapshots and regular backups give the website a trust section with real UI evidence. Visitors can see how restore and retention work before they download.",
+    label: "Backups",
+    title: "Recovery is designed in.",
+    body: "Original snapshots and rolling backups are first-class screens — visitors see restore and retention before they download.",
     images: [
       {
         src: "/images/paenia/screenshot-original-backups.png",
-        alt: "Paenia backup settings showing original snapshots",
-        label: "Original snapshots"
+        alt: "Original backups",
+        kicker: "Safety",
+        capTitle: "Original snapshots",
+        capDesc: "Baseline copies of each target file — your safety net before deeper edits."
       },
       {
         src: "/images/paenia/screenshot-regular-backups.png",
-        alt: "Paenia backup settings showing regular backup list and restore controls",
-        label: "Regular backups"
+        alt: "Regular backups",
+        kicker: "Safety",
+        capTitle: "Backup history",
+        capDesc: "Rolling list of successful applies with retention you control — restore without drama."
       }
     ]
   }
@@ -131,84 +146,117 @@ export const workflowShowcases = [
 export const galleryImages = [
   {
     src: "/images/paenia/screenshot-dark.png",
-    alt: "Paenia dark workspace with palette editing and live editor preview",
-    label: "Dark workspace",
+    alt: "Paenia dark workspace with palette editing and live preview",
     width: 2838,
     height: 2012,
-    tone: "The core workspace"
+    size: "featured" as const,
+    kicker: "Overview",
+    capTitle: "Dark workspace",
+    capDesc: "The full layout: navigation, editor, and preview without decorative crops."
   },
   {
     src: "/images/paenia/screenshot-light.png",
-    alt: "Paenia light preset workspace",
-    label: "Light preset",
+    alt: "Light preset workspace",
     width: 2838,
     height: 2012,
-    tone: "Light and readable"
+    size: "rail" as const,
+    kicker: "Theme",
+    capTitle: "Light workspace",
+    capDesc: "A bright preset with balanced chrome and syntax contrast."
   },
   {
     src: "/images/paenia/screenshot-palette.png",
-    alt: "Paenia palette editing screen with syntax color controls",
-    label: "Palette editing",
+    alt: "Palette editing",
     width: 2926,
     height: 2100,
-    tone: "Color system controls"
+    size: "rail" as const,
+    kicker: "Editing",
+    capTitle: "Palette controls",
+    capDesc: "Dial in accents and token colors with immediate visual feedback."
   },
   {
     src: "/images/paenia/screenshot-presets.png",
-    alt: "Paenia preset picker with theme list and palette swatches",
-    label: "Preset picker",
+    alt: "Preset picker",
     width: 3168,
     height: 2122,
-    tone: "Start fast"
+    size: "rail" as const,
+    kicker: "Library",
+    capTitle: "Preset picker",
+    capDesc: "Browse dark, light, and minimal starts — search and filter in one list."
   },
   {
     src: "/images/paenia/screenshot-detailed.png",
-    alt: "Paenia detailed mode showing exact VS Code color keys",
-    label: "Detailed mode",
+    alt: "Detailed mode",
     width: 3168,
     height: 2122,
-    tone: "Exact keys"
+    size: "rail" as const,
+    kicker: "Precision",
+    capTitle: "Detailed keys",
+    capDesc: "Edit individual VS Code workbench keys when palette-level control is not enough."
   },
   {
     src: "/images/paenia/screenshot-overrides.png",
-    alt: "Paenia custom override badges in detailed mode",
-    label: "Overrides",
+    alt: "Overrides",
     width: 3080,
     height: 2034,
-    tone: "Precise adjustments"
+    size: "rail" as const,
+    kicker: "Custom",
+    capTitle: "Override badges",
+    capDesc: "See which keys you have touched — no guesswork in a long list."
   },
   {
     src: "/images/paenia/screenshot-targets.png",
-    alt: "Paenia apply targets settings for supported editors",
-    label: "Apply targets",
+    alt: "Apply targets",
     width: 3168,
     height: 2122,
-    tone: "Choose editors"
+    size: "rail" as const,
+    kicker: "Apply",
+    capTitle: "Editor targets",
+    capDesc: "Pick Cursor, VS Code, and compatible apps — paths and readiness before any write."
   },
   {
     src: "/images/paenia/screenshot-original-backups.png",
-    alt: "Paenia original backup snapshot settings",
-    label: "Original backups",
+    alt: "Original backups",
     width: 3080,
     height: 2034,
-    tone: "Original snapshots"
+    size: "rail" as const,
+    kicker: "Safety",
+    capTitle: "Original snapshots",
+    capDesc: "First-line restore points captured before your theme changes stack up."
   },
   {
     src: "/images/paenia/screenshot-regular-backups.png",
-    alt: "Paenia regular backup list and restore controls",
-    label: "Regular backups",
+    alt: "Regular backups",
     width: 3168,
     height: 2122,
-    tone: "Restore safely"
+    size: "rail" as const,
+    kicker: "History",
+    capTitle: "Rolling backups",
+    capDesc: "Recent applies kept in order — restore a known-good settings.json in one step."
   }
 ] as const;
 
-export const safetyItems = [
-  "Confirmation modal before Apply",
-  "Backup before successful writes",
-  "Brace-balanced settings.json patching",
-  "Restore from original and regular snapshots",
-  "Recent backup retention per editor"
+export const safetyPillars = [
+  {
+    title: "Confirm before Apply",
+    hint: "Review targets and paths in a modal — nothing writes until you agree."
+  },
+  {
+    title: "Backup on success",
+    hint: "Snapshots are taken when a write succeeds, so you can roll back with confidence."
+  },
+  {
+    title: "Brace-balanced patches",
+    hint: "Only the color sections are merged; the file is validated before it hits disk."
+  },
+  {
+    title: "Restore from snapshots",
+    hint: "Original and rolling backups are first-class — recovery is part of the product."
+  },
+  {
+    title: "Retention per editor",
+    hint: "Recent backups are kept tidy per target so lists stay readable."
+  }
 ] as const;
 
 export const supportedEditors = [
@@ -221,7 +269,7 @@ export const supportedEditors = [
   "Kiro",
   "Positron",
   "Code - OSS",
-  "Custom VS Code-family path"
+  "Custom path"
 ] as const;
 
 export const faqs = [
@@ -233,17 +281,17 @@ export const faqs = [
   {
     question: "Which editors does Paenia support?",
     answer:
-      "Paenia supports Cursor, Visual Studio Code, Antigravity, Trae, Windsurf, VSCodium, Kiro, Positron, Code - OSS, and custom compatible User/settings.json paths."
+      "Cursor, Visual Studio Code, Antigravity, Trae, Windsurf, VSCodium, Kiro, Positron, Code - OSS, and custom compatible User/settings.json paths."
   },
   {
     question: "Does Paenia overwrite my whole settings file?",
     answer:
-      "Paenia patches editor color customization sections instead of replacing the whole settings file, and it checks brace balance before writing."
+      "It patches color customization sections instead of replacing the file, and checks brace balance before writing."
   },
   {
     question: "Is there a backup before applying?",
     answer:
-      "Yes. Paenia snapshots target settings.json files before successful writes and includes restore workflows for backups."
+      "Yes — target settings.json files are snapshotted before successful writes, with restore workflows for backups."
   },
   {
     question: "Does Paenia support Cursor Glass tint?",
@@ -252,11 +300,10 @@ export const faqs = [
   },
   {
     question: "What macOS version is required?",
-    answer: "Paenia is designed for macOS 13 or newer."
+    answer: "macOS 13 or newer."
   },
   {
     question: "Where can I download Paenia?",
-    answer:
-      "The website includes a download page. The macOS DMG release will be added there when it is ready."
+    answer: "Use the download page; the DMG link will appear there when the release is ready."
   }
 ] as const;

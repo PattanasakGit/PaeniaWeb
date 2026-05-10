@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { SiteEffects } from "@/components/SiteEffects";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -52,7 +53,11 @@ export default function RootLayout({
   return (
     <html lang="en" data-scroll-behavior="smooth">
       <body>
+        <a className="skip-link" href="#main-content">
+          Skip to content
+        </a>
         {children}
+        <SiteEffects />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(productJsonLd) }}

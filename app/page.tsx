@@ -1,35 +1,33 @@
+import Image from "next/image";
 import Link from "next/link";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { HeroShowcase } from "@/components/HeroShowcase";
 import { ProductGallery } from "@/components/ProductGallery";
-import { SectionShell } from "@/components/SectionShell";
 import { WorkflowShowcases } from "@/components/WorkflowShowcases";
-import { faqs, features, proofPoints, safetyItems, supportedEditors } from "@/lib/product";
+import { faqs, features, proofPoints, safetyPillars, supportedEditors } from "@/lib/product";
 
 export default function HomePage() {
   return (
     <>
       <Header />
-      <main>
-        <section className="hero-section">
+      <main id="main-content" tabIndex={-1}>
+        <section className="hero-section wrap" aria-labelledby="hero-title">
           <div className="hero-copy">
-            <h1>Design your editor color system.</h1>
+            <p className="hero-kicker">Native macOS · Theme studio</p>
+            <h1 id="hero-title">Design your editor color system.</h1>
             <p>
-              Paenia is a native macOS app for shaping Cursor, VS Code, Antigravity, Trae and other
-              VS Code-family themes with live preview, presets, and safe apply.
+              Paenia shapes Cursor, VS Code, Antigravity, Trae, and other VS Code-family themes with live
+              preview, curated presets, and writes you can trust.
             </p>
             <div className="hero-actions">
               <Link className="button primary" href="/download">
                 Download for macOS
               </Link>
-              <a className="button secondary" href="#story">
-                Explore features
-              </a>
             </div>
-            <div className="proof-grid">
+            <div className="proof-row" role="list">
               {proofPoints.map((point) => (
-                <div key={point.title} className="proof-card">
+                <div key={point.title} className="proof-pill" role="listitem">
                   <strong>{point.title}</strong>
                   <span>{point.body}</span>
                 </div>
@@ -39,75 +37,113 @@ export default function HomePage() {
           <HeroShowcase />
         </section>
 
-        <ProductGallery />
+        <div className="band">
+          <ProductGallery />
+        </div>
 
         <WorkflowShowcases />
 
-        <SectionShell
-          id="ai-search"
-          title="What is Paenia?"
-          intro="Paenia is a native macOS app for editing theme colors in Cursor, VS Code, Antigravity, Trae, and other VS Code-family editors."
-        >
-          <div className="answer-block">
+        <section className="section-shell wrap reveal" id="what-is-paenia" aria-labelledby="what-title">
+          <div className="what-minimal">
+            <figure className="what-minimal__figure">
+              <Image
+                src="/images/paenia/screenshot-palette.png"
+                alt="Paenia palette editing with live IDE preview"
+                width={2926}
+                height={2100}
+                loading="lazy"
+                sizes="(max-width: 1024px) 92vw, 45vw"
+              />
+            </figure>
+            <div className="what-minimal__text">
+              <h2 id="what-title">What is Paenia?</h2>
+              <p className="what-minimal__p">
+                A native macOS app for theme colors in Cursor, VS Code, Antigravity, Trae, and other VS
+                Code-family editors. You work in a visual UI; Paenia writes validated patches to each
+                editor&apos;s <code>settings.json</code>, with presets, live preview, backups, and restore
+                when you need to undo.
+              </p>
+              <p className="what-minimal__p what-minimal__p--sub">
+                It maps to the same keys you would edit by hand — <code>workbench.colorCustomizations</code>{" "}
+                and <code>editor.tokenColorCustomizations</code> — without leaving the comfort of a
+                structured editor.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section className="section-shell wrap reveal" id="features" aria-labelledby="feat-title">
+          <div className="section-heading">
+            <h2 id="feat-title">Built for precise theme work</h2>
             <p>
-              Paenia writes safe color customizations to each editor&apos;s <code>settings.json</code>,
-              supports presets and live preview, and creates backups before applying changes. It is
-              designed for people who want precise editor color control without manually editing{" "}
-              <code>workbench.colorCustomizations</code> and{" "}
-              <code>editor.tokenColorCustomizations</code>.
+              Visual editing on top of real VS Code-compatible keys — approachable without hiding the system
+              underneath.
             </p>
           </div>
-        </SectionShell>
-
-        <SectionShell
-          id="features"
-          title="Built for precise theme work"
-          intro="Paenia combines visual preset editing with real VS Code-compatible theme keys, so the interface stays approachable without hiding the system underneath."
-        >
-          <div className="card-grid">
-            {features.map((feature) => (
-              <article key={feature.title} className="info-card">
-                <h3>{feature.title}</h3>
-                <p>{feature.body}</p>
+          <div className="feature-list">
+            {features.map((feature, index) => (
+              <article key={feature.title} className="feature-item">
+                <span className="num" aria-hidden="true">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <div>
+                  <h3>{feature.title}</h3>
+                  <p>{feature.body}</p>
+                </div>
               </article>
             ))}
           </div>
-        </SectionShell>
+        </section>
 
-        <SectionShell
-          id="safety"
-          title="Safe apply by design"
-          intro="Paenia treats editor settings as user-owned files. The apply flow confirms targets, snapshots settings, patches carefully, and reports the result."
-        >
-          <ul className="safety-list">
-            {safetyItems.map((item) => (
-              <li key={item}>{item}</li>
+        <section className="section-shell wrap reveal" id="safety" aria-labelledby="safety-title">
+          <div className="section-heading">
+            <h2 id="safety-title">Safe apply by design</h2>
+            <p>
+              Your <code>settings.json</code> files stay yours. Paenia confirms targets, snapshots, patches in
+              place, and shows a clear result.
+            </p>
+          </div>
+          <ul className="safety-pillars">
+            {safetyPillars.map((pillar) => (
+              <li key={pillar.title}>
+                <span className="safety-pillars__title">{pillar.title}</span>
+                <span className="safety-pillars__hint">{pillar.hint}</span>
+              </li>
             ))}
           </ul>
-        </SectionShell>
+        </section>
 
-        <SectionShell
-          id="editors"
-          title="For Cursor, VS Code, and AI editors"
-          intro="Paenia targets editors that use VS Code-compatible User/settings.json files and support workbench color customizations."
-        >
-          <div className="editor-grid">
-            {supportedEditors.map((editor) => (
-              <span key={editor}>{editor}</span>
-            ))}
+        <section className="section-shell wrap reveal" id="editors" aria-labelledby="ed-title">
+          <div className="section-heading">
+            <h2 id="ed-title">For Cursor, VS Code, and AI editors</h2>
+            <p>
+              Works with editors that read a VS Code-style User <code>settings.json</code> and support
+              workbench color customizations.
+            </p>
           </div>
-        </SectionShell>
+          <ul className="editor-cloud" aria-label="Supported editors">
+            {supportedEditors.map((name) => (
+              <li key={name}>
+                <span className="editor-cloud__name">{name}</span>
+              </li>
+            ))}
+          </ul>
+        </section>
 
-        <SectionShell id="faq" title="FAQ" intro="Short answers for people and search engines.">
+        <section className="section-shell wrap reveal" id="faq" aria-labelledby="faq-title">
+          <div className="section-heading">
+            <h2 id="faq-title">FAQ</h2>
+            <p>Short answers for people and search engines.</p>
+          </div>
           <div className="faq-list">
             {faqs.map((faq) => (
-              <details key={faq.question} open={faq.question === "What is Paenia?"}>
+              <details key={faq.question}>
                 <summary>{faq.question}</summary>
                 <p>{faq.answer}</p>
               </details>
             ))}
           </div>
-        </SectionShell>
+        </section>
       </main>
       <Footer />
     </>

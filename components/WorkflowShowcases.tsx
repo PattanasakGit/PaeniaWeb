@@ -8,35 +8,45 @@ const imageDimensions = (src: string) =>
 
 export function WorkflowShowcases() {
   return (
-    <section className="workflow-section" aria-labelledby="workflow-title">
+    <section className="workflow-section wrap reveal" aria-labelledby="workflow-eyebrow">
       <div className="workflow-heading">
-        <h2 id="workflow-title">See the real Paenia workflows.</h2>
+        <h2 id="workflow-eyebrow">From preset to production settings.</h2>
         <p>
-          The page uses actual app screenshots as product evidence, arranged by task so each image
-          supports the story instead of becoming a generic gallery.
+          The page follows the product: pick a direction, refine keys, choose targets, and keep backups
+          visible — so trust is part of the story, not a footnote.
         </p>
       </div>
 
       <div className="workflow-list">
         {workflowShowcases.map((showcase, index) => (
-          <article key={showcase.title} className="workflow-card" data-layout={index % 2 === 0 ? "left" : "right"}>
+          <article
+            key={showcase.title}
+            className="workflow-card"
+            data-layout={index % 2 === 0 ? undefined : "right"}
+          >
             <div className="workflow-copy">
-              <span>{String(index + 1).padStart(2, "0")}</span>
+              <span className="wf-label">{showcase.label}</span>
               <h3>{showcase.title}</h3>
               <p>{showcase.body}</p>
             </div>
             <div className="workflow-media" data-count={showcase.images.length}>
               {showcase.images.map((image) => (
                 <figure key={image.src} className="workflow-image">
-                  <Image
-                    src={image.src}
-                    alt={image.alt}
-                    width={imageDimensions(image.src).width}
-                    height={imageDimensions(image.src).height}
-                    loading="eager"
-                    sizes="(max-width: 900px) 92vw, 720px"
-                  />
-                  <figcaption>{image.label}</figcaption>
+                  <div className="screen-card">
+                    <Image
+                      src={image.src}
+                      alt={image.alt}
+                      width={imageDimensions(image.src).width}
+                      height={imageDimensions(image.src).height}
+                      loading="lazy"
+                      sizes="(max-width: 900px) 92vw, 720px"
+                    />
+                  </div>
+                  <figcaption className="media-cap">
+                    <span className="media-cap__kicker">{image.kicker}</span>
+                    <span className="media-cap__title">{image.capTitle}</span>
+                    <p className="media-cap__desc">{image.capDesc}</p>
+                  </figcaption>
                 </figure>
               ))}
             </div>

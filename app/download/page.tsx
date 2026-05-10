@@ -13,14 +13,14 @@ export default function DownloadPage() {
   return (
     <>
       <Header />
-      <main>
-        <section className="download-hero">
+      <main id="main-content" tabIndex={-1}>
+        <section className="download-hero wrap" aria-labelledby="dl-title">
           <div className="download-copy">
             <p className="status-label">macOS download</p>
-            <h1>Download Paenia for macOS</h1>
+            <h1 id="dl-title">Download Paenia</h1>
             <p>
-              The Paenia DMG release is coming soon. This page is the permanent download destination,
-              and the real file link will be added here when it is ready.
+              The Paenia DMG release is coming soon. This page stays the permanent download destination —
+              the file link will land here when the build is ready.
             </p>
             {downloadInfo.status === "available" ? (
               <a className="button primary" href={downloadInfo.dmgUrl}>
@@ -32,7 +32,7 @@ export default function DownloadPage() {
               </button>
             )}
             <Link className="text-link" href="/">
-              Back to overview
+              ← Back to overview
             </Link>
           </div>
           <div className="download-panel">
@@ -46,7 +46,7 @@ export default function DownloadPage() {
           </div>
         </section>
 
-        <section className="download-details">
+        <section className="download-details wrap" aria-label="Requirements and release notes">
           <div>
             <h2>System requirements</h2>
             <ul>
@@ -58,8 +58,8 @@ export default function DownloadPage() {
           <div>
             <h2>Future release metadata</h2>
             <p>
-              When the DMG is uploaded, update <code>lib/download.ts</code> with the version, file
-              size, optional SHA-256 checksum, and real download URL.
+              When the DMG is uploaded, update <code>lib/download.ts</code> with the version, file size,
+              optional SHA-256 checksum, and real download URL.
             </p>
           </div>
         </section>
