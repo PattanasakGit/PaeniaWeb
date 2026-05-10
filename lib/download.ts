@@ -105,6 +105,21 @@ export const gatekeeperHintTh =
  */
 export const brewTapRepo = "PattanasakGit/homebrew-tap";
 
+/** Served from site static files — same logic as public/install-paenia.sh */
+export const installScriptUrl = "https://paenia.app/install-paenia.sh";
+
+/** Inspect before piping to bash */
+export const installScriptSourceUrl =
+  "https://github.com/PattanasakGit/PaeniaWeb/blob/master/public/install-paenia.sh";
+
+export const brewCurlInstallOneLiner = `curl -fsSL ${installScriptUrl} | bash`;
+
+export const brewCurlInstallNote =
+  "Piping to bash trusts this script — read it first if you prefer (link below). Requires Homebrew.";
+
+export const brewCurlInstallNoteTh =
+  "คำสั่งเดียวสะดวก แต่ควรอ่านสคริปต์ก่อนถ้าไม่ไว้ใจการ pipe ไป bash — ต้องมี Homebrew";
+
 /**
  * Resolves Paenia.app wherever Homebrew put it (default /Applications, or ~/Applications, or custom --appdir).
  */
@@ -120,7 +135,7 @@ brew install --cask paenia
 ${brewQuarantineStripCommand}`;
 
 export const brewInstallExplanation =
-  "Homebrew still unpacks the same unsigned .dmg, and macOS can leave quarantine on Paenia.app — that produces the misleading “damaged” dialog. After install, run the block below: it finds Paenia.app via brew list, then falls back to /Applications and ~/Applications. If nothing is found, run brew reinstall --cask paenia.";
+  "Homebrew still unpacks the same unsigned .dmg, and macOS can leave quarantine on Paenia.app (the misleading “damaged” dialog). Use the one-liner to tap, install, and strip quarantine automatically. Expand “manual steps” only if you prefer copy-paste without a script.";
 
 export const brewInstallExplanationTh =
   "ติดตั้งด้วย brew แล้วต้องรันบรรทัด xattr ทุกครั้ง (หลังติดตั้งหรืออัปเกรด) เพื่อลบ quarantine — ไม่ใช่แค่โหลดจากเบราว์เซอร์เท่านั้นที่โดน";

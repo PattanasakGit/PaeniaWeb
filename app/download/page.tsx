@@ -3,6 +3,9 @@ import Link from "next/link";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import {
+  brewCurlInstallNote,
+  brewCurlInstallNoteTh,
+  brewCurlInstallOneLiner,
   brewInstallExplanation,
   brewInstallExplanationTh,
   brewOrphanedCaskHint,
@@ -15,6 +18,8 @@ import {
   gatekeeperHintTh,
   gatekeeperQuarantineHint,
   gatekeeperTerminalCommand,
+  installScriptSourceUrl,
+  installScriptUrl,
   paeniaAppVersion
 } from "@/lib/download";
 
@@ -102,13 +107,31 @@ export default function DownloadPage() {
                   <a href="https://brew.sh" rel="noopener noreferrer">
                     Homebrew
                   </a>
-                  . Unsigned apps are never as smooth as notarized ones — the xattr line is required after each
-                  <code className="download-inline-code"> brew install</code> or{" "}
-                  <code className="download-inline-code">reinstall</code>.
+                  . Unsigned builds still need the quarantine strip — the one-liner script does tap, install, and
+                  xattr for you.
                 </p>
-                <pre className="download-terminal download-terminal--brew" tabIndex={0}>
-                  <code>{brewTapCommands}</code>
+                <p className="download-panel__lede download-panel__lede--compact">{brewCurlInstallNote}</p>
+                <p className="download-panel__lede download-panel__lede--th" lang="th">
+                  {brewCurlInstallNoteTh}
+                </p>
+                <pre className="download-terminal download-terminal--brew download-terminal--hero" tabIndex={0}>
+                  <code>{brewCurlInstallOneLiner}</code>
                 </pre>
+                <p className="download-panel__script-links">
+                  <a href={installScriptUrl} rel="noopener noreferrer">
+                    Direct script URL
+                  </a>
+                  <span aria-hidden="true"> · </span>
+                  <a href={installScriptSourceUrl} rel="noopener noreferrer">
+                    View on GitHub
+                  </a>
+                </p>
+                <details className="download-disclosure download-disclosure--inner">
+                  <summary>Copy-paste: manual steps (same as the script)</summary>
+                  <pre className="download-terminal download-terminal--brew">
+                    <code>{brewTapCommands}</code>
+                  </pre>
+                </details>
                 <p className="download-panel__footnote">{brewTapSetupHint}</p>
                 <p className="download-panel__footnote">{brewOrphanedCaskHint}</p>
                 <p className="download-panel__footnote download-panel__lede--th" lang="th">
