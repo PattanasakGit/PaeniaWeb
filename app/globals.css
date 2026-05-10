@@ -1328,6 +1328,68 @@
   opacity: 0.55;
 }
 
+.download-panel--accent {
+  margin-top: 1rem;
+  background: color-mix(in oklch, var(--accent-soft) 55%, var(--surface));
+  border-color: color-mix(in oklch, var(--accent) 22%, var(--line));
+}
+
+.download-panel__lede {
+  margin: 0 0 0.75rem;
+  font-size: 0.875rem;
+  line-height: 1.55;
+  color: var(--ink);
+}
+
+.download-panel__lede--th {
+  margin-top: -0.35rem;
+  font-size: 0.8125rem;
+  color: var(--muted);
+}
+
+.download-panel__steps {
+  margin: 0;
+  padding-left: 1.15rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+.download-panel__steps li {
+  padding-left: 0.15rem;
+}
+
+.download-terminal {
+  margin: 0.5rem 0 0;
+  padding: 0.65rem 0.85rem;
+  border-radius: 10px;
+  background: oklch(22% 0.02 285 / 0.06);
+  border: 1px solid color-mix(in oklch, var(--line) 80%, var(--paper));
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.download-terminal code {
+  font-family: ui-monospace, "SF Mono", Menlo, monospace;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--ink);
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.download-panel__footnote {
+  margin: 1rem 0 0;
+  padding-top: 0.85rem;
+  border-top: 1px solid color-mix(in oklch, var(--line) 85%, transparent);
+  font-size: 0.75rem;
+  line-height: 1.5;
+  color: var(--muted-2);
+}
+
 .download-disclosure {
   margin-top: 1rem;
   padding: 0.65rem 1rem 0.85rem;

@@ -85,6 +85,20 @@ export const unsignedDmgNotice =
   "This build is not Apple-notarized. After opening the disk image, drag Paenia into Applications. " +
   "On first launch, right-click the app → Open, or allow it under System Settings → Privacy & Security.";
 
+/** Shown on /download — browser downloads add quarantine; macOS may say “damaged” even when the file is fine. */
+export const gatekeeperQuarantineHint =
+  "If macOS says the app is “damaged” after you downloaded with Chrome or Safari, that is usually Gatekeeper + quarantine, not a bad download. Remove quarantine after copying Paenia into Applications (see steps below).";
+
+export const gatekeeperTerminalCommand =
+  'xattr -dr com.apple.quarantine "$HOME/Applications/Paenia.app"';
+
+export const gatekeeperAfterXattr =
+  "Then open Paenia from Applications. If prompted, confirm once in System Settings → Privacy & Security, or right-click → Open.";
+
+/** Thai summary for users who read Thai copy on the site. */
+export const gatekeeperHintTh =
+  "ถ้าโหลดผ่านเบราว์เซอร์แล้วขึ้นว่าแอป “เสียหาย” มักเป็นเพราะ quarantine ไม่ใช่ไฟล์พัง — ลบแอตทริบิวต์ตามคำสั่งด้านล่างหลังลากแอปไปที่ Applications";
+
 /** Copy for the download page — keep minimal. */
 export const downloadMachineChecklist = [
   "macOS 13 (Ventura) or later · Apple Silicon or Intel",

@@ -5,6 +5,10 @@ import { Header } from "@/components/Header";
 import {
   downloadInfo,
   downloadMachineChecklist,
+  gatekeeperAfterXattr,
+  gatekeeperHintTh,
+  gatekeeperQuarantineHint,
+  gatekeeperTerminalCommand,
   paeniaAppVersion
 } from "@/lib/download";
 
@@ -79,8 +83,34 @@ export default function DownloadPage() {
             </section>
 
             {downloadInfo.status === "available" ? (
+              <section className="download-panel download-panel--accent" aria-labelledby="gatekeeper-title">
+                <h2 id="gatekeeper-title" className="download-panel__title">
+                  First open after a browser download
+                </h2>
+                <p className="download-panel__lede">{gatekeeperQuarantineHint}</p>
+                <p className="download-panel__lede download-panel__lede--th" lang="th">
+                  {gatekeeperHintTh}
+                </p>
+                <ol className="download-panel__steps">
+                  <li>Open the .dmg and drag <strong>Paenia</strong> into your <strong>Applications</strong> folder.</li>
+                  <li>
+                    Open <strong>Terminal</strong> and run:
+                    <pre className="download-terminal">
+                      <code>{gatekeeperTerminalCommand}</code>
+                    </pre>
+                  </li>
+                  <li>{gatekeeperAfterXattr}</li>
+                </ol>
+                <p className="download-panel__footnote">
+                  <strong>No quarantine prompts at all</strong> requires an Apple-notarized build (code signing +
+                  notarization). This beta is unsigned; the steps above are the standard workaround.
+                </p>
+              </section>
+            ) : null}
+
+            {downloadInfo.status === "available" ? (
               <details className="download-disclosure">
-                <summary>Checksum and first launch</summary>
+                <summary>Checksum and notarization note</summary>
                 <div className="download-disclosure__body">
                   {downloadInfo.sha256 ? (
                     <div className="download-disclosure__block">
@@ -89,8 +119,8 @@ export default function DownloadPage() {
                     </div>
                   ) : null}
                   <p className="download-disclosure__note">
-                    This build is not Apple-notarized. The first time you open it, right-click Paenia in
-                    Applications and choose Open, or allow it under System Settings → Privacy & Security.
+                    This build is not Apple-notarized. Verify the file against the SHA-256 above if you suspect a
+                    bad download; otherwise follow &quot;First open after a browser download&quot; for Gatekeeper.
                   </p>
                 </div>
               </details>
