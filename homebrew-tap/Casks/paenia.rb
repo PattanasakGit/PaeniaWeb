@@ -23,6 +23,6 @@ cask "paenia" do
   caveats <<~EOS
     The unsigned .dmg can leave quarantine on the app (macOS may say it is “damaged”). After install or upgrade, strip quarantine using the path Homebrew reports:
       APP="$(brew list --cask paenia | grep -E 'Paenia[.]app$' | head -1)"; [ -n "$APP" ] && xattr -dr com.apple.quarantine "$APP"
-    If APP is empty, run brew list --cask paenia to see paths, or: brew reinstall --cask paenia
+    If APP is empty, you may have deleted Paenia.app manually while Homebrew still thinks it is installed — run: brew uninstall --cask paenia && brew install --cask paenia
   EOS
 end

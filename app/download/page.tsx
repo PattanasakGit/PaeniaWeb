@@ -5,6 +5,8 @@ import { Header } from "@/components/Header";
 import {
   brewInstallExplanation,
   brewInstallExplanationTh,
+  brewOrphanedCaskHint,
+  brewOrphanedCaskHintTh,
   brewTapCommands,
   brewTapSetupHint,
   downloadInfo,
@@ -108,6 +110,10 @@ export default function DownloadPage() {
                   <code>{brewTapCommands}</code>
                 </pre>
                 <p className="download-panel__footnote">{brewTapSetupHint}</p>
+                <p className="download-panel__footnote">{brewOrphanedCaskHint}</p>
+                <p className="download-panel__footnote download-panel__lede--th" lang="th">
+                  {brewOrphanedCaskHintTh}
+                </p>
               </section>
             ) : null}
 

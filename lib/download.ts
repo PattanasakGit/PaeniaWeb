@@ -125,6 +125,12 @@ export const brewInstallExplanation =
 export const brewInstallExplanationTh =
   "ติดตั้งด้วย brew แล้วต้องรันบรรทัด xattr ทุกครั้ง (หลังติดตั้งหรืออัปเกรด) เพื่อลบ quarantine — ไม่ใช่แค่โหลดจากเบราว์เซอร์เท่านั้นที่โดน";
 
+export const brewOrphanedCaskHint =
+  "If you moved Paenia.app to Trash by hand, Homebrew may still think the cask is installed while the app bundle is gone — brew list can be empty or xattr finds nothing. Fix: brew uninstall --cask paenia, then brew install --cask paenia, then run the quarantine block again.";
+
+export const brewOrphanedCaskHintTh =
+  "ถ้าเคยลบ Paenia.app เอง Homebrew อาจยังบันทึกว่าติดตั้งแล้ว แต่ไม่มีแอปในเครื่อง — รัน brew uninstall --cask paenia แล้วติดตั้งใหม่ จากนั้นค่อยรันบล็อก xattr";
+
 export const brewTapSetupHint =
   "If install fails with “Unknown tap”, create the GitHub repo, add Casks/paenia.rb from the PaeniaWeb repository (folder homebrew-tap/), update version and sha256 when you ship a new DMG, then try again.";
 

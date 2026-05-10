@@ -1423,6 +1423,12 @@
   color: var(--muted-2);
 }
 
+.download-panel--brew .download-panel__footnote + .download-panel__footnote {
+  margin-top: 0.65rem;
+  padding-top: 0;
+  border-top: none;
+}
+
 .download-disclosure {
   margin-top: 1rem;
   padding: 0.65rem 1rem 0.85rem;
