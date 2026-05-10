@@ -2,9 +2,9 @@ import Image from "next/image";
 import { screenshots } from "@/lib/product";
 
 const heroDimensions = {
-  dark: { width: 2838, height: 2012 },
-  light: { width: 2838, height: 2012 },
-  palette: { width: 2926, height: 2100 }
+  dark: { width: 1920, height: 1361 },
+  light: { width: 1920, height: 1361 },
+  palette: { width: 1920, height: 1378 }
 } as const;
 
 export function HeroShowcase() {
@@ -22,6 +22,8 @@ export function HeroShowcase() {
             height={primaryDimensions.height}
             sizes="(max-width: 900px) 92vw, 720px"
             priority
+            fetchPriority="high"
+            decoding="sync"
           />
         </div>
         <figcaption className="media-cap">
@@ -40,6 +42,7 @@ export function HeroShowcase() {
                 width={heroDimensions[screenshot.id].width}
                 height={heroDimensions[screenshot.id].height}
                 sizes="(max-width: 900px) 44vw, 340px"
+                decoding="async"
               />
             </div>
             <figcaption className="media-cap">

@@ -3,8 +3,8 @@ import { workflowShowcases } from "@/lib/product";
 
 const imageDimensions = (src: string) =>
   src.includes("overrides") || src.includes("original-backups")
-    ? { width: 3080, height: 2034 }
-    : { width: 3168, height: 2122 };
+    ? { width: 1920, height: 1268 }
+    : { width: 1920, height: 1286 };
 
 export function WorkflowShowcases() {
   return (
@@ -39,6 +39,7 @@ export function WorkflowShowcases() {
                       width={imageDimensions(image.src).width}
                       height={imageDimensions(image.src).height}
                       loading="lazy"
+                      decoding="async"
                       sizes="(max-width: 900px) 92vw, 720px"
                     />
                   </div>

@@ -47,11 +47,12 @@ export default function HomePage() {
           <div className="what-minimal">
             <figure className="what-minimal__figure">
               <Image
-                src="/images/paenia/screenshot-palette.png"
+                src="/images/paenia/webp/screenshot-palette.webp"
                 alt="Paenia palette editing with live IDE preview"
-                width={2926}
-                height={2100}
+                width={1920}
+                height={1378}
                 loading="lazy"
+                decoding="async"
                 sizes="(max-width: 1024px) 92vw, 45vw"
               />
             </figure>

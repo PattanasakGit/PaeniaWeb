@@ -1,7 +1,19 @@
+/** WebP paths under public/images/paenia/webp — run `npm run optimize-assets` after changing PNG sources. */
+const W = {
+  /** dark, light screenshots */
+  hero: { width: 1920, height: 1361 },
+  /** palette, what-minimal */
+  palette: { width: 1920, height: 1378 },
+  /** 3168×2122 family */
+  wide: { width: 1920, height: 1286 },
+  /** 3080×2034 family */
+  wideShort: { width: 1920, height: 1268 }
+} as const;
+
 export const screenshots = [
   {
     id: "dark",
-    src: "/images/paenia/screenshot-dark.png",
+    src: "/images/paenia/webp/screenshot-dark.webp",
     alt: "Paenia dark mode workspace with presets, palette editing, and live preview",
     kicker: "Overview",
     capTitle: "Dark workspace",
@@ -9,7 +21,7 @@ export const screenshots = [
   },
   {
     id: "light",
-    src: "/images/paenia/screenshot-light.png",
+    src: "/images/paenia/webp/screenshot-light.webp",
     alt: "Paenia light mode workspace",
     kicker: "Theme",
     capTitle: "Light workspace",
@@ -17,7 +29,7 @@ export const screenshots = [
   },
   {
     id: "palette",
-    src: "/images/paenia/screenshot-palette.png",
+    src: "/images/paenia/webp/screenshot-palette.webp",
     alt: "Paenia palette editing with live preview",
     kicker: "Editing",
     capTitle: "Palette mode",
@@ -84,21 +96,21 @@ export const workflowShowcases = [
     body: "Palette mode and Detailed mode stack cleanly: tune the base system, then override individual workbench keys only where it matters.",
     images: [
       {
-        src: "/images/paenia/screenshot-presets.png",
+        src: "/images/paenia/webp/screenshot-presets.webp",
         alt: "Preset picker",
         kicker: "Workflow",
         capTitle: "Preset library",
         capDesc: "Search, filter, and open a direction without leaving the main window."
       },
       {
-        src: "/images/paenia/screenshot-detailed.png",
+        src: "/images/paenia/webp/screenshot-detailed.webp",
         alt: "Detailed mode",
         kicker: "Workflow",
         capTitle: "Workbench keys",
         capDesc: "Fine-tune exact color keys when you need surgical control over the UI."
       },
       {
-        src: "/images/paenia/screenshot-overrides.png",
+        src: "/images/paenia/webp/screenshot-overrides.webp",
         alt: "Overrides",
         kicker: "Workflow",
         capTitle: "Your overrides",
@@ -112,7 +124,7 @@ export const workflowShowcases = [
     body: "Cursor, VS Code, Antigravity, Trae, and custom paths stay visible with status before any write — the marketing surface matches the confirmation UI.",
     images: [
       {
-        src: "/images/paenia/screenshot-targets.png",
+        src: "/images/paenia/webp/screenshot-targets.webp",
         alt: "Apply targets",
         kicker: "Apply",
         capTitle: "Where the theme lands",
@@ -126,14 +138,14 @@ export const workflowShowcases = [
     body: "Original snapshots and rolling backups are first-class screens — visitors see restore and retention before they download.",
     images: [
       {
-        src: "/images/paenia/screenshot-original-backups.png",
+        src: "/images/paenia/webp/screenshot-original-backups.webp",
         alt: "Original backups",
         kicker: "Safety",
         capTitle: "Original snapshots",
         capDesc: "Baseline copies of each target file — your safety net before deeper edits."
       },
       {
-        src: "/images/paenia/screenshot-regular-backups.png",
+        src: "/images/paenia/webp/screenshot-regular-backups.webp",
         alt: "Regular backups",
         kicker: "Safety",
         capTitle: "Backup history",
@@ -145,90 +157,90 @@ export const workflowShowcases = [
 
 export const galleryImages = [
   {
-    src: "/images/paenia/screenshot-dark.png",
+    src: "/images/paenia/webp/screenshot-dark.webp",
     alt: "Paenia dark workspace with palette editing and live preview",
-    width: 2838,
-    height: 2012,
+    width: W.hero.width,
+    height: W.hero.height,
     size: "featured" as const,
     kicker: "Overview",
     capTitle: "Dark workspace",
     capDesc: "The full layout: navigation, editor, and preview without decorative crops."
   },
   {
-    src: "/images/paenia/screenshot-light.png",
+    src: "/images/paenia/webp/screenshot-light.webp",
     alt: "Light preset workspace",
-    width: 2838,
-    height: 2012,
+    width: W.hero.width,
+    height: W.hero.height,
     size: "rail" as const,
     kicker: "Theme",
     capTitle: "Light workspace",
     capDesc: "A bright preset with balanced chrome and syntax contrast."
   },
   {
-    src: "/images/paenia/screenshot-palette.png",
+    src: "/images/paenia/webp/screenshot-palette.webp",
     alt: "Palette editing",
-    width: 2926,
-    height: 2100,
+    width: W.palette.width,
+    height: W.palette.height,
     size: "rail" as const,
     kicker: "Editing",
     capTitle: "Palette controls",
     capDesc: "Dial in accents and token colors with immediate visual feedback."
   },
   {
-    src: "/images/paenia/screenshot-presets.png",
+    src: "/images/paenia/webp/screenshot-presets.webp",
     alt: "Preset picker",
-    width: 3168,
-    height: 2122,
+    width: W.wide.width,
+    height: W.wide.height,
     size: "rail" as const,
     kicker: "Library",
     capTitle: "Preset picker",
     capDesc: "Browse dark, light, and minimal starts — search and filter in one list."
   },
   {
-    src: "/images/paenia/screenshot-detailed.png",
+    src: "/images/paenia/webp/screenshot-detailed.webp",
     alt: "Detailed mode",
-    width: 3168,
-    height: 2122,
+    width: W.wide.width,
+    height: W.wide.height,
     size: "rail" as const,
     kicker: "Precision",
     capTitle: "Detailed keys",
     capDesc: "Edit individual VS Code workbench keys when palette-level control is not enough."
   },
   {
-    src: "/images/paenia/screenshot-overrides.png",
+    src: "/images/paenia/webp/screenshot-overrides.webp",
     alt: "Overrides",
-    width: 3080,
-    height: 2034,
+    width: W.wideShort.width,
+    height: W.wideShort.height,
     size: "rail" as const,
     kicker: "Custom",
     capTitle: "Override badges",
     capDesc: "See which keys you have touched — no guesswork in a long list."
   },
   {
-    src: "/images/paenia/screenshot-targets.png",
+    src: "/images/paenia/webp/screenshot-targets.webp",
     alt: "Apply targets",
-    width: 3168,
-    height: 2122,
+    width: W.wide.width,
+    height: W.wide.height,
     size: "rail" as const,
     kicker: "Apply",
     capTitle: "Editor targets",
     capDesc: "Pick Cursor, VS Code, and compatible apps — paths and readiness before any write."
   },
   {
-    src: "/images/paenia/screenshot-original-backups.png",
+    src: "/images/paenia/webp/screenshot-original-backups.webp",
     alt: "Original backups",
-    width: 3080,
-    height: 2034,
+    width: W.wideShort.width,
+    height: W.wideShort.height,
     size: "rail" as const,
     kicker: "Safety",
     capTitle: "Original snapshots",
     capDesc: "First-line restore points captured before your theme changes stack up."
   },
   {
-    src: "/images/paenia/screenshot-regular-backups.png",
+    src: "/images/paenia/webp/screenshot-regular-backups.webp",
     alt: "Regular backups",
-    width: 3168,
-    height: 2122,
+    width: W.wide.width,
+    height: W.wide.height,
     size: "rail" as const,
     kicker: "History",
     capTitle: "Rolling backups",

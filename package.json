@@ -7,9 +7,11 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint .",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "optimize-assets": "node scripts/optimize-assets.mjs"
   },
   "dependencies": {
+    "@vercel/analytics": "^2.0.1",
     "next": "latest",
     "react": "latest",
     "react-dom": "latest"
@@ -21,6 +23,7 @@
     "@types/react-dom": "latest",
     "eslint": "^9.39.1",
     "eslint-config-next": "latest",
+    "sharp": "^0.34.5",
     "typescript": "latest"
   }
 }

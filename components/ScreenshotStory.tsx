@@ -59,7 +59,14 @@ export function ScreenshotStory() {
               onClick={() => setActive(screenshot.id)}
               aria-pressed={active === screenshot.id}
             >
-              <Image src={screenshot.src} alt={screenshot.alt} fill sizes="(max-width: 900px) 88vw, 640px" />
+              <Image
+                src={screenshot.src}
+                alt={screenshot.alt}
+                fill
+                sizes="(max-width: 900px) 88vw, 640px"
+                decoding="async"
+                loading="lazy"
+              />
               <span>{screenshot.capTitle}</span>
             </button>
           ))}

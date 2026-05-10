@@ -53,7 +53,15 @@ export function Header() {
     <header ref={headerRef} className="site-header" id="site-header">
       <div className="header-inner wrap">
         <Link href="/" className="brand-link" aria-label="Paenia home">
-          <Image src="/images/paenia/app-icon.png" alt="" width={36} height={36} priority />
+          <Image
+            src="/images/paenia/webp/app-icon-72.webp"
+            alt=""
+            width={36}
+            height={36}
+            priority
+            fetchPriority="high"
+            decoding="sync"
+          />
           <span>Paenia</span>
         </Link>
         <div className="header-desktop">

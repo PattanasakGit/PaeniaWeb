@@ -24,6 +24,8 @@ export function ProductGallery() {
               width={featuredImage.width}
               height={featuredImage.height}
               loading="eager"
+              fetchPriority="high"
+              decoding="sync"
               sizes="(max-width: 900px) 92vw, 1120px"
             />
           </div>
@@ -44,6 +46,7 @@ export function ProductGallery() {
                   width={image.width}
                   height={image.height}
                   loading="lazy"
+                  decoding="async"
                   sizes="(max-width: 900px) 84vw, 760px"
                 />
               </div>
