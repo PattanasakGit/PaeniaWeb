@@ -12,16 +12,16 @@
 
 const CONFIG = {
   /** Must match CFBundleShortVersionString in the Paenia app Info.plist */
-  version: "0.0.95",
+  version: "0.0.95-beta",
   /** GitHub owner/repo where you attach the .dmg release asset */
   githubRepo: "PattanasakGit/Paenia",
   /** Git tag on the release — must match the tag on GitHub */
-  releaseTag: "v0.0.95",
+  releaseTag: "v0.0.95-beta",
   /** Must match output of scripts/make_dmg.sh */
-  dmgFileName: "Paenia-0.0.95-macos.dmg",
+  dmgFileName: "Paenia-0.0.95-beta-macos.dmg",
   /** From local build; update when you ship a new DMG */
-  fileSize: "~4.2 MB",
-  sha256: "a4439c6fd24cf81dd97cd26c52a3e6b20347cfc60f80260d58ed48f24d083ed3" as string | null
+  fileSize: "~4.1 MB",
+  sha256: "dae4cd57e8693e4b8dd1e982fdbcc00ccb706e83fa90748c233260b395dfd956" as string | null
 };
 
 /** Marketing / UI — same as the shipped app version in CONFIG. */
