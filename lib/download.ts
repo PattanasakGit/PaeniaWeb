@@ -105,8 +105,15 @@ export const gatekeeperHintTh =
  */
 export const brewTapRepo = "PattanasakGit/homebrew-tap";
 
-/** Served from site static files — same logic as public/install-paenia.sh */
-export const installScriptUrl = "https://paenia.app/install-paenia.sh";
+/**
+ * Default one-liner host: GitHub raw (works without custom DNS).
+ * Same bytes as public/install-paenia.sh — update branch in URL if you rename default branch.
+ */
+export const installScriptUrl =
+  "https://raw.githubusercontent.com/PattanasakGit/PaeniaWeb/master/public/install-paenia.sh";
+
+/** When paenia.app DNS is configured on your hosting */
+export const installScriptUrlSite = "https://paenia.app/install-paenia.sh";
 
 /** Inspect before piping to bash */
 export const installScriptSourceUrl =
@@ -115,10 +122,10 @@ export const installScriptSourceUrl =
 export const brewCurlInstallOneLiner = `curl -fsSL ${installScriptUrl} | bash`;
 
 export const brewCurlInstallNote =
-  "Piping to bash trusts this script — read it first if you prefer (link below). Requires Homebrew.";
+  "Piping to bash trusts this script — read it first if you prefer (link below). Requires Homebrew. Uses GitHub so it works even when paenia.app DNS is not set up yet.";
 
 export const brewCurlInstallNoteTh =
-  "คำสั่งเดียวสะดวก แต่ควรอ่านสคริปต์ก่อนถ้าไม่ไว้ใจการ pipe ไป bash — ต้องมี Homebrew";
+  "คำสั่งชี้ไป GitHub โดยตรงเพื่อให้โหลดได้แม้โดเมน paenia.app ยังไม่ตั้งค่า — ต้องมี Homebrew";
 
 /**
  * Resolves Paenia.app wherever Homebrew put it (default /Applications, or ~/Applications, or custom --appdir).

@@ -20,6 +20,7 @@ import {
   gatekeeperTerminalCommand,
   installScriptSourceUrl,
   installScriptUrl,
+  installScriptUrlSite,
   paeniaAppVersion
 } from "@/lib/download";
 
@@ -119,7 +120,11 @@ export default function DownloadPage() {
                 </pre>
                 <p className="download-panel__script-links">
                   <a href={installScriptUrl} rel="noopener noreferrer">
-                    Direct script URL
+                    Script (GitHub raw)
+                  </a>
+                  <span aria-hidden="true"> · </span>
+                  <a href={installScriptUrlSite} rel="noopener noreferrer">
+                    Same file on paenia.app
                   </a>
                   <span aria-hidden="true"> · </span>
                   <a href={installScriptSourceUrl} rel="noopener noreferrer">
