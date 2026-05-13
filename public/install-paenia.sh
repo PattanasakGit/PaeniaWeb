@@ -18,8 +18,16 @@ fi
 echo "Paenia: brew tap ${TAP_REPO}"
 brew tap "${TAP_REPO}"
 
-echo "Paenia: brew install --cask paenia"
-brew install --cask paenia
+echo "Paenia: brew update"
+brew update
+
+if brew list --cask paenia >/dev/null 2>&1; then
+  echo "Paenia: brew upgrade --cask paenia"
+  brew upgrade --cask paenia
+else
+  echo "Paenia: brew install --cask paenia"
+  brew install --cask paenia
+fi
 
 strip_quarantine() {
   local app=""

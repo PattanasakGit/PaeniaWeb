@@ -5,11 +5,11 @@
 # Users: brew tap PattanasakGit/homebrew-tap && brew install --cask paenia
 
 cask "paenia" do
-  version "0.0.95-beta"
+  version "0.0.96-beta"
 
-  sha256 "dae4cd57e8693e4b8dd1e982fdbcc00ccb706e83fa90748c233260b395dfd956"
+  sha256 "f84b5b75093ae74a5e0fe099ef1ca9cf9fccd52d2086fb6bac8ea60b1ed92b08"
 
-  url "https://github.com/PattanasakGit/Paenia/releases/download/v0.0.95-beta/Paenia-0.0.95-beta-macos.dmg",
+  url "https://github.com/PattanasakGit/Paenia/releases/download/v0.0.96-beta/Paenia-0.0.96-beta-macos.dmg",
       verified: "github.com/PattanasakGit/Paenia/"
 
   name "Paenia"
